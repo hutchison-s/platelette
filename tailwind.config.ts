@@ -8,19 +8,32 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display: "var(--font-display)",
+        heading: "var(--font-heading)",
+        body: "var(--font-body)"
+      },
       borderWidth: {
-        1: '1px'
+        1: '1px',
       },
       borderRadius: {
         std: '0.25rem',
         xtra: '0.75rem',
       },
       padding: {
-        std: '0.6rem'
+        sm: '0.4rem',
+        std: '0.6rem',
+        xtra: '1rem'
+      },
+      maxWidth: {
+        600: '600px',
+        800: '800px',
+        1000: '1000px'
       },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "rgb(var(--background))",
+        background2: "rgb(var(--background2))",
+        foreground: "rgb(var(--foreground))",
         primary: "rgb(var(--primary))",
         primary2: "rgb(var(--primary2))",
         secondary: "rgb(var(--secondary))",
