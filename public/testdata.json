@@ -1,39 +1,74 @@
 [
-    {
-      "id": 1,
-      "title": "Chilaquiles Verdes Topped with Fried Egg",
-      "desc": "Delicious Mexican breakfast as spicy as you can handle, featuring crispy tortilla chips smothered in tangy salsa verde, crema, and fresh cilantro.",
-      "tags": ["Breakfast", "Mexican", "Spicy"],
-      "photo": "https://www.seriouseats.com/thmb/wceJtot3qMjXcVAnk6PBw_OhxRw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chilaquiles-verdes-fried-eggs-hero-01_1-d18b82d02fa54c92a05e66881e906814.JPG",
-      "timestamp": "2025-02-06",
-      "user": {
-        "name": "Jonathan Salazo",
-        "photo": "https://randomuser.me/api/portraits/thumb/men/89.jpg"
-      }
-    },
-    {
-      "id": 2,
-      "title": "Spaghetti Carbonara",
-      "desc": "A classic Roman pasta dish with a creamy sauce made from eggs, Pecorino Romano, pancetta, and black pepper.",
-      "tags": ["Dinner", "Italian", "Comfort Food"],
-      "photo": "https://www.allrecipes.com/thmb/Vg2cRidr2zcYhWGvPD8M18xM_WY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/11973-spaghetti-carbonara-ii-DDMFS-4x3-6edea51e421e4457ac0c3269f3be5157.jpg",
-      "timestamp": "2025-02-06",
-      "user": {
-        "name": "Luca Bianchi",
-        "photo": "https://randomuser.me/api/portraits/thumb/men/45.jpg"
-      }
-    },
-    {
-      "id": 3,
-      "title": "Japanese Matcha Pancakes",
-      "desc": "Fluffy, soufflé-style pancakes with a hint of matcha, served with fresh berries and whipped cream.",
-      "tags": ["Breakfast", "Japanese", "Dessert"],
-      "photo": "https://indyassa.com/wp-content/uploads/2023/01/0_IMG_2233.jpg",
-      "timestamp": "2025-02-06",
-      "user": {
-        "name": "Haruka Tanaka",
-        "photo": "https://randomuser.me/api/portraits/thumb/women/32.jpg"
-      }
+  {
+    "id": 1,
+    "title": "Chilaquiles Verdes Topped with Fried Egg",
+    "desc": "Delicious Mexican breakfast as spicy as you can handle, featuring crispy tortilla chips smothered in tangy salsa verde, crema, and fresh cilantro.",
+    "tags": ["Breakfast", "Mexican", "Spicy"],
+    "photo": "https://www.seriouseats.com/thmb/wceJtot3qMjXcVAnk6PBw_OhxRw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chilaquiles-verdes-fried-eggs-hero-01_1-d18b82d02fa54c92a05e66881e906814.JPG",
+    "timestamp": "2025-02-06",
+    "user": {
+      "name": "Jonathan Salazo",
+      "photo": "https://randomuser.me/api/portraits/thumb/men/89.jpg"
     }
-  ]
-  
+  },
+  {
+    "id": 2,
+    "title": "Spaghetti Carbonara",
+    "desc": "A classic Roman pasta dish with a creamy sauce made from eggs, Pecorino Romano, pancetta, and black pepper.",
+    "tags": ["Dinner", "Italian", "Comfort Food"],
+    "photo": "https://www.allrecipes.com/thmb/Vg2cRidr2zcYhWGvPD8M18xM_WY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/11973-spaghetti-carbonara-ii-DDMFS-4x3-6edea51e421e4457ac0c3269f3be5157.jpg",
+    "timestamp": "2025-02-06",
+    "user": {
+      "name": "Luca Bianchi",
+      "photo": "https://randomuser.me/api/portraits/thumb/men/45.jpg"
+    }
+  },
+  {
+    "id": 3,
+    "title": "Japanese Matcha Pancakes",
+    "desc": "Fluffy, soufflé-style pancakes with a hint of matcha, served with fresh berries and whipped cream.",
+    "tags": ["Breakfast", "Japanese", "Dessert"],
+    "photo": "https://indyassa.com/wp-content/uploads/2023/01/0_IMG_2233.jpg",
+    "timestamp": "2025-02-06",
+    "user": {
+      "name": "Haruka Tanaka",
+      "photo": "https://randomuser.me/api/portraits/thumb/women/32.jpg"
+    }
+  },
+  {
+    "id": 4,
+    "title": "Classic Caesar Salad",
+    "desc": "A fresh salad with crunchy romaine lettuce, Parmesan cheese, crispy croutons, and a rich Caesar dressing.",
+    "tags": ["Lunch", "Salad", "Healthy"],
+    "photo": "https://assets.bonappetit.com/photos/624215f8a76f02a99b29518f/1:1/w_2800,h_2800,c_limit/0328-ceasar-salad-lede.jpg",
+    "timestamp": "2025-02-06",
+    "user": {
+      "name": "Emily Clarke",
+      "photo": "https://randomuser.me/api/portraits/thumb/women/25.jpg"
+    }
+  },
+  {
+    "id": 5,
+    "title": "Chicken Tikka Masala",
+    "desc": "A flavorful Indian dish featuring tender chicken in a spiced, creamy tomato sauce, served with basmati rice.",
+    "tags": ["Dinner", "Indian", "Spicy"],
+    "photo": "https://www.allrecipes.com/thmb/1ul-jdOz8H4b6BDrRcYOuNmJgt4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/239867chef-johns-chicken-tikka-masala-ddmfs-3X4-0572-e02a25f8c7b745459a9106e9eb13de10.jpg",
+    "timestamp": "2025-02-06",
+    "user": {
+      "name": "Rajeev Patel",
+      "photo": "https://randomuser.me/api/portraits/thumb/men/30.jpg"
+    }
+  },
+  {
+    "id": 6,
+    "title": "Lemon Blueberry Muffins",
+    "desc": "Freshly baked muffins with a burst of blueberries and a hint of zesty lemon, perfect for a sweet breakfast or snack.",
+    "tags": ["Dessert", "Breakfast", "Baked Goods"],
+    "photo": "https://www.kitchenathoskins.com/wp-content/uploads/2021/05/lemon-blueberry-muffins-89.jpg",
+    "timestamp": "2025-02-06",
+    "user": {
+      "name": "Sophie Mitchell",
+      "photo": "https://randomuser.me/api/portraits/thumb/women/38.jpg"
+    }
+  }
+]

@@ -29,7 +29,7 @@ function RecipeList() {
         <>
         {status == 'success' 
         &&  data 
-        &&  <section className="grid gap-4">
+        &&  <section className="grid gap-4 max-w-600 mx-auto lg:max-w-full lg:grid-cols-2">
                 {data.map(r => <RecipePreviewCard recipe={r} key={r.id}/>)}
             </section>}
         {status == 'loading' && <Card className="grid place-items-center text-3xl text-primary">Loading...</Card>}

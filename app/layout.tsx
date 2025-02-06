@@ -43,7 +43,7 @@ export default function RootLayout({
         className={`${bodytext.variable} ${heading.variable} ${display.variable} antialiased w-screen min-h-screen flex flex-col bg-background`}
       >
         <PageHead />
-        <main className="grow bg-background p-std w-full max-w-800 mx-auto">
+        <main className="grow bg-background p-std w-full max-w-1000 mx-auto">
           {children}
         </main>
         <PageFooter />
