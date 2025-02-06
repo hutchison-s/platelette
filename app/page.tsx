@@ -1,24 +1,13 @@
 import Card from "@/app/_components/cards/Card";
-import RecipePreviewCard from "./_components/cards/RecipePreviewCard";
+import SectionHeading from "./_components/ui/SectionHeading";
+import RecipeList from "./_components/tools/RecipeList";
 
 export default function Home() {
   return (
     <>
-      <section className="size-full grid place-itmes-center gap-2 max-w-600 mx-auto">
-        
-        <RecipePreviewCard
-          recipe={{
-            title: 'Chilaquiles Verdes Topped with Fried Egg',
-            desc: 'Delicious Mexican breakfast as spicy as you can handle, featuring crispy tortilla chips smothered in tangy salsa verde, crema, and fresh cilantro.',
-            tags: ['Breakfast', 'Mexican', 'Spicy'],
-            photo: 'https://www.seriouseats.com/thmb/wceJtot3qMjXcVAnk6PBw_OhxRw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chilaquiles-verdes-fried-eggs-hero-01_1-d18b82d02fa54c92a05e66881e906814.JPG',
-            timestamp: new Date().toLocaleDateString(),
-            user: {
-              name: 'Jonathan Salazo',
-              photo: "https://randomuser.me/api/portraits/thumb/men/89.jpg"
-            }
-          }}
-        />
+      <SectionHeading>New Recipes</SectionHeading>
+      <section className="size-full grid place-itmes-center gap-4 max-w-600 mx-auto">
+        <RecipeList/>
         <Card className="grid place-items-center">
           <p className="text-center text-primary2 text-2xl font-heading font-bold">More to Come!</p>
           <p className="text-foreground">Check back soon for updates...</p>

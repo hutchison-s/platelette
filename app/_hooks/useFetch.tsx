@@ -13,7 +13,7 @@ function useFetch<T>(url: string): [data: T | undefined, status: fetchStatus] {
             fetch(url)
                 .then(res => res.json())
                 .then(json => {
-                    setData(json.data);
+                    setData(json);
                     setStatus('success');
                 });
         } catch (err) {
