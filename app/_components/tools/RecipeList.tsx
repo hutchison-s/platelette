@@ -23,7 +23,7 @@ type User = {
   
 
 function RecipeList() {
-    const [data, status] = useFetch<RecipePreviewList>('/testdata.json');
+    const [data, status] = useFetch<RecipePreviewList>('https://api.platelette.com/recipes');
 
     return (
         <>
