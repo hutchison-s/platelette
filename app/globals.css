@@ -35,22 +35,22 @@ body {
   font-family: var(--font-body)
 }
 .hero-bg {
-  background-image: linear-gradient(to bottom, #000000aa, #00000033 30%, #fffffff5 45%), url('https://i0.wp.com/www.parkrecord.com/wp-content/uploads/2021/08/tablefeast-scaled-1.jpg?fit=2560%2C1529&ssl=1');
+  background-image: linear-gradient(to bottom, #000000aa, #00000033 30%, #fffffff5 45%), url('/hero.webp');
   ;
 }
 @media screen and (min-width: 1024px) {
   .hero-bg {
-    background-image: linear-gradient(to right, #000000aa,#00000055 30%, #fffffff5 50%), url('https://i0.wp.com/www.parkrecord.com/wp-content/uploads/2021/08/tablefeast-scaled-1.jpg?fit=2560%2C1529&ssl=1');
+    background-image: linear-gradient(to right, #000000aa,#00000055 30%, #fffffff5 50%), url('/hero.webp');
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .hero-bg {
-    background-image: linear-gradient(to bottom, #000000aa, #00000033 30%, #000000f5 45%), url('https://i0.wp.com/www.parkrecord.com/wp-content/uploads/2021/08/tablefeast-scaled-1.jpg?fit=2560%2C1529&ssl=1');
+    background-image: linear-gradient(to bottom, #000000aa, #00000033 30%, #000000f5 45%), url('/hero.webp');
   }
   @media screen and (min-width: 1024px) {
     .hero-bg {
-      background-image: linear-gradient(to right, #000000aa,#00000055 30%, #000000f5 50%), url('https://i0.wp.com/www.parkrecord.com/wp-content/uploads/2021/08/tablefeast-scaled-1.jpg?fit=2560%2C1529&ssl=1');
+      background-image: linear-gradient(to right, #000000aa,#00000055 30%, #000000f5 50%), url('/hero.webp');
     }
   }
 }
