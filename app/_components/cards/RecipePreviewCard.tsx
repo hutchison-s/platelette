@@ -38,7 +38,7 @@ function RecipePreviewCard({recipe}: {recipe: Recipe}) {
                     )
                 })}
             </div>
-            <p className="text-right text-secondary/75 text-xs">{recipe.user.name} - {recipe.timestamp}</p>
+            <p className="text-right text-faded text-xs">{recipe.user.name} - {recipe.timestamp}</p>
         </Card>
     )
 }
