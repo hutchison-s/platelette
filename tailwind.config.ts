@@ -37,6 +37,7 @@ export default {
         primary: "rgb(var(--primary))",
         primary2: "rgb(var(--primary2))",
         secondary: "rgb(var(--secondary))",
+        faded: "rgb(var(--faded))",
         berry: {
           DEFAULT: '#d93036', 
            100: '#2d0809', 
