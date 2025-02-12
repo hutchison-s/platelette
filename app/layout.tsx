@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   title: "Platelette",
   description: "Share your plate",
   icons: {
-    icon: '@/public/logo-red.png',
-    shortcut: '@/public/logo-red.png'
+    icon: '/logo-red.png',
+    shortcut: '/logo-red.png'
   }
 };
 
@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-primary">
       <head>
-        <link rel="icon" href="@/public/logo-red.png" />
+        <link rel="icon" href="/logo-red.png" />
       </head>
       <body
         className={`${bodytext.variable} ${heading.variable} ${display.variable} antialiased w-screen min-h-screen flex flex-col bg-background`}
