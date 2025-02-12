@@ -4,71 +4,171 @@
     "title": "Chilaquiles Verdes Topped with Fried Egg",
     "desc": "Delicious Mexican breakfast as spicy as you can handle, featuring crispy tortilla chips smothered in tangy salsa verde, crema, and fresh cilantro.",
     "tags": ["Breakfast", "Mexican", "Spicy"],
-    "photo": "https://www.seriouseats.com/thmb/wceJtot3qMjXcVAnk6PBw_OhxRw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chilaquiles-verdes-fried-eggs-hero-01_1-d18b82d02fa54c92a05e66881e906814.JPG",
+    "photo": "https://platelette-images.s3.us-east-1.amazonaws.com/00000-00003",
     "timestamp": "2025-02-06",
     "user": {
       "name": "Jonathan Salazo",
       "photo": "https://randomuser.me/api/portraits/thumb/men/89.jpg"
-    }
+    },
+    "slug": "chilaquiles-verdes-topped-with-fried-egg",
+    "ingredients": [
+      { "qty": 2, "measure": "Cup", "name": "Tortilla Chips" },
+      { "qty": 1, "measure": "Cup", "name": "Salsa Verde" },
+      { "qty": 2, "measure": "Piece", "name": "Eggs" },
+      { "qty": 2, "measure": "Tablespoon", "name": "Crema" },
+      { "qty": 1, "measure": "Tablespoon", "name": "Cilantro, chopped" }
+    ],
+    "method": [
+      "Heat salsa verde in a pan until warm.",
+      "Add tortilla chips and mix until coated.",
+      "Fry eggs in a separate pan.",
+      "Serve chilaquiles topped with fried eggs, crema, and cilantro."
+    ],
+    "yield": 2
   },
   {
     "id": 2,
     "title": "Spaghetti Carbonara",
     "desc": "A classic Roman pasta dish with a creamy sauce made from eggs, Pecorino Romano, pancetta, and black pepper.",
     "tags": ["Dinner", "Italian", "Comfort Food"],
-    "photo": "https://www.allrecipes.com/thmb/Vg2cRidr2zcYhWGvPD8M18xM_WY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/11973-spaghetti-carbonara-ii-DDMFS-4x3-6edea51e421e4457ac0c3269f3be5157.jpg",
+    "photo": "https://platelette-images.s3.us-east-1.amazonaws.com/00000-00002",
     "timestamp": "2025-02-06",
     "user": {
       "name": "Luca Bianchi",
       "photo": "https://randomuser.me/api/portraits/thumb/men/45.jpg"
-    }
+    },
+    "slug": "spaghetti-carbonara",
+    "ingredients": [
+      { "qty": 12, "measure": "Ounce", "name": "Spaghetti" },
+      { "qty": 4, "measure": "Ounce", "name": "Pancetta, diced" },
+      { "qty": 2, "measure": "Piece", "name": "Eggs" },
+      { "qty": 1, "measure": "Cup", "name": "Pecorino Romano, grated" },
+      { "qty": 1, "measure": "Teaspoon", "name": "Black Pepper, freshly ground" }
+    ],
+    "method": [
+      "Cook spaghetti until al dente.",
+      "Fry pancetta until crispy.",
+      "Whisk eggs with Pecorino Romano and black pepper.",
+      "Combine pasta with pancetta and egg mixture off heat.",
+      "Serve immediately."
+    ],
+    "yield": 4
   },
   {
     "id": 3,
     "title": "Japanese Matcha Pancakes",
     "desc": "Fluffy, soufflé-style pancakes with a hint of matcha, served with fresh berries and whipped cream.",
     "tags": ["Breakfast", "Japanese", "Dessert"],
-    "photo": "https://indyassa.com/wp-content/uploads/2023/01/0_IMG_2233.jpg",
+    "photo": "https://platelette-images.s3.us-east-1.amazonaws.com/00000-00004",
     "timestamp": "2025-02-06",
     "user": {
       "name": "Haruka Tanaka",
       "photo": "https://randomuser.me/api/portraits/thumb/women/32.jpg"
+    },
+    "slug": "japanese-matcha-pancakes",
+    "ingredients": [
+      { "qty": 1, "measure": "Cup", "name": "Flour" },
+      { "qty": 1, "measure": "Teaspoon", "name": "Baking Powder" },
+      { "qty": 1, "measure": "Teaspoon", "name": "Matcha Powder" },
+      { "qty": 2, "measure": "Piece", "name": "Eggs, separated" },
+      { "qty": 1, "measure": "Cup", "name": "Milk" }
+    ],
+    "method": [
+      "Whisk together flour, baking powder, and matcha powder.",
+      "Beat egg whites until stiff peaks form.",
+      "Mix egg yolks and milk into dry ingredients.",
+      "Fold in egg whites gently.",
+      "Cook pancakes on low heat until fluffy."
+    ],
+    "yield": 2
+  },{
+      "id": 4,
+      "title": "Classic Caesar Salad",
+      "desc": "A fresh salad with crunchy romaine lettuce, Parmesan cheese, crispy croutons, and a rich Caesar dressing.",
+      "tags": ["Lunch", "Salad", "Healthy"],
+      "photo": "https://platelette-images.s3.us-east-1.amazonaws.com/00000-00001",
+      "timestamp": "2025-02-06",
+      "user": {
+        "name": "Emily Clarke",
+        "photo": "https://randomuser.me/api/portraits/thumb/women/25.jpg"
+      },
+      "slug": "classic-caesar-salad",
+      "ingredients": [
+        { "qty": 1, "measure": "Head", "name": "Romaine Lettuce, chopped" },
+        { "qty": 0.5, "measure": "Cup", "name": "Parmesan Cheese, grated" },
+        { "qty": 1, "measure": "Cup", "name": "Croutons" },
+        { "qty": 0.25, "measure": "Cup", "name": "Caesar Dressing" },
+        { "qty": 1, "measure": "Teaspoon", "name": "Black Pepper, freshly ground" }
+      ],
+      "method": [
+        "Wash and chop the romaine lettuce.",
+        "Toss lettuce with Parmesan cheese and croutons.",
+        "Drizzle Caesar dressing over the salad and mix well.",
+        "Sprinkle black pepper to taste before serving."
+      ],
+      "yield": 2
+    },
+    {
+      "id": 5,
+      "title": "Chicken Tikka Masala",
+      "desc": "A flavorful Indian dish featuring tender chicken in a spiced, creamy tomato sauce, served with basmati rice.",
+      "tags": ["Dinner", "Indian", "Spicy"],
+      "photo": "https://platelette-images.s3.us-east-1.amazonaws.com/00000-00005",
+      "timestamp": "2025-02-06",
+      "user": {
+        "name": "Rajeev Patel",
+        "photo": "https://randomuser.me/api/portraits/thumb/men/30.jpg"
+      },
+      "slug": "chicken-tikka-masala",
+      "ingredients": [
+        { "qty": 2, "measure": "Piece", "name": "Chicken Breasts, diced" },
+        { "qty": 1, "measure": "Cup", "name": "Tomato Puree" },
+        { "qty": 0.5, "measure": "Cup", "name": "Heavy Cream" },
+        { "qty": 1, "measure": "Tablespoon", "name": "Garam Masala" },
+        { "qty": 1, "measure": "Teaspoon", "name": "Cumin" },
+        { "qty": 1, "measure": "Teaspoon", "name": "Paprika" },
+        { "qty": 1, "measure": "Cup", "name": "Basmati Rice, cooked" }
+      ],
+      "method": [
+        "Marinate chicken with garam masala, cumin, and paprika.",
+        "Sauté the chicken in a pan until golden brown.",
+        "Add tomato puree and simmer for 10 minutes.",
+        "Stir in heavy cream and cook for another 5 minutes.",
+        "Serve hot with basmati rice."
+      ],
+      "yield": 4
+    },
+    {
+      "id": 6,
+      "title": "Lemon Blueberry Muffins",
+      "desc": "Freshly baked muffins with a burst of blueberries and a hint of zesty lemon, perfect for a sweet breakfast or snack.",
+      "tags": ["Dessert", "Breakfast", "Baked Goods"],
+      "photo": "https://platelette-images.s3.us-east-1.amazonaws.com/00000-00006",
+      "timestamp": "2025-02-06",
+      "user": {
+        "name": "Sophie Mitchell",
+        "photo": "https://randomuser.me/api/portraits/thumb/women/38.jpg"
+      },
+      "slug": "lemon-blueberry-muffins",
+      "ingredients": [
+        { "qty": 2, "measure": "Cup", "name": "Flour" },
+        { "qty": 1, "measure": "Teaspoon", "name": "Baking Powder" },
+        { "qty": 0.5, "measure": "Teaspoon", "name": "Salt" },
+        { "qty": 0.5, "measure": "Cup", "name": "Sugar" },
+        { "qty": 1, "measure": "Cup", "name": "Blueberries" },
+        { "qty": 1, "measure": "Piece", "name": "Lemon, zested" },
+        { "qty": 1, "measure": "Cup", "name": "Milk" },
+        { "qty": 2, "measure": "Piece", "name": "Eggs" },
+        { "qty": 0.5, "measure": "Cup", "name": "Butter, melted" }
+      ],
+      "method": [
+        "Preheat oven to 375°F (190°C) and grease a muffin tin.",
+        "Mix flour, baking powder, salt, and sugar in a bowl.",
+        "In another bowl, whisk eggs, milk, melted butter, and lemon zest.",
+        "Combine wet and dry ingredients, then fold in blueberries.",
+        "Pour batter into muffin tin and bake for 18-20 minutes.",
+        "Let cool before serving."
+      ],
+      "yield": 12
     }
-  },
-  {
-    "id": 4,
-    "title": "Classic Caesar Salad",
-    "desc": "A fresh salad with crunchy romaine lettuce, Parmesan cheese, crispy croutons, and a rich Caesar dressing.",
-    "tags": ["Lunch", "Salad", "Healthy"],
-    "photo": "https://assets.bonappetit.com/photos/624215f8a76f02a99b29518f/1:1/w_2800,h_2800,c_limit/0328-ceasar-salad-lede.jpg",
-    "timestamp": "2025-02-06",
-    "user": {
-      "name": "Emily Clarke",
-      "photo": "https://randomuser.me/api/portraits/thumb/women/25.jpg"
-    }
-  },
-  {
-    "id": 5,
-    "title": "Chicken Tikka Masala",
-    "desc": "A flavorful Indian dish featuring tender chicken in a spiced, creamy tomato sauce, served with basmati rice.",
-    "tags": ["Dinner", "Indian", "Spicy"],
-    "photo": "https://www.allrecipes.com/thmb/1ul-jdOz8H4b6BDrRcYOuNmJgt4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/239867chef-johns-chicken-tikka-masala-ddmfs-3X4-0572-e02a25f8c7b745459a9106e9eb13de10.jpg",
-    "timestamp": "2025-02-06",
-    "user": {
-      "name": "Rajeev Patel",
-      "photo": "https://randomuser.me/api/portraits/thumb/men/30.jpg"
-    }
-  },
-  {
-    "id": 6,
-    "title": "Lemon Blueberry Muffins",
-    "desc": "Freshly baked muffins with a burst of blueberries and a hint of zesty lemon, perfect for a sweet breakfast or snack.",
-    "tags": ["Dessert", "Breakfast", "Baked Goods"],
-    "photo": "https://www.kitchenathoskins.com/wp-content/uploads/2021/05/lemon-blueberry-muffins-89.jpg",
-    "timestamp": "2025-02-06",
-    "user": {
-      "name": "Sophie Mitchell",
-      "photo": "https://randomuser.me/api/portraits/thumb/women/38.jpg"
-    }
-  }
 ]

@@ -3,23 +3,8 @@
 import useFetch from "@/app/_hooks/useFetch";
 import RecipePreviewCard from "../cards/RecipePreviewCard";
 import Card from "../cards/Card";
+import { RecipePreviewList } from "@/app/types";
 
-type User = {
-    name: string;
-    photo: string;
-  };
-  
-  type Recipe = {
-    id: number;
-    title: string;
-    desc: string;
-    tags: string[];
-    photo: string;
-    timestamp: string;
-    user: User;
-  };
-  
-  type RecipePreviewList = Recipe[];
   
 
 function RecipeList() {
