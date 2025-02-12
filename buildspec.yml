@@ -1,5 +1,8 @@
 version: 0.2
-
+env:
+  secrets-manager:
+    S3_BUCKET_NAME: "platelette_secrets:bucket"
+    CLOUDFRONT_DISTRIBUTION_ID: "platelette_secrets:distribution"
 phases:
   install:
     runtime-versions:
@@ -15,9 +18,16 @@ phases:
     commands:
       - echo Syncing build to S3...
       - aws s3 sync out/ s3://${S3_BUCKET_NAME}/ --delete  # Sync the `out/` folder to your S3 bucket
+      - echo Creating CloudFront invalidation...
+      - aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} --paths "/*"
+    finally:
+      - echo Build completed...
 artifacts:
   files:
     - '**/*'  # Include all files (or just the specific ones from `out/` like 'out/**/*')
   base-directory: out  # This is where your build artifacts are located after running `npm run build`
-  
+cache:
+  paths:
+    - 'node_modules/**/*' # Cache `node_modules` for faster `yarn` or `npm i`
+    - '.next/cache/**/*' # Cache Next.js for faster application rebuilds
 
