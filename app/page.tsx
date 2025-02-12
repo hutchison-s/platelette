@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <SectionHeading>New Recipes</SectionHeading>
+      <SectionHeading>Recipes</SectionHeading>
         <RecipeList/>
         <Card className="grid place-items-center mt-4">
           <p className="text-center text-primary2 text-2xl font-heading font-bold">More to Come!</p>
