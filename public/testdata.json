@@ -43,7 +43,11 @@
       { "qty": 4, "measure": "Ounce", "name": "Pancetta, diced" },
       { "qty": 2, "measure": "Piece", "name": "Eggs" },
       { "qty": 1, "measure": "Cup", "name": "Pecorino Romano, grated" },
-      { "qty": 1, "measure": "Teaspoon", "name": "Black Pepper, freshly ground" }
+      {
+        "qty": 1,
+        "measure": "Teaspoon",
+        "name": "Black Pepper, freshly ground"
+      }
     ],
     "method": [
       "Cook spaghetti until al dente.",
@@ -81,94 +85,99 @@
       "Cook pancakes on low heat until fluffy."
     ],
     "yield": 2
-  },{
-      "id": 4,
-      "title": "Classic Caesar Salad",
-      "desc": "A fresh salad with crunchy romaine lettuce, Parmesan cheese, crispy croutons, and a rich Caesar dressing.",
-      "tags": ["Lunch", "Salad", "Healthy"],
-      "photo": "https://platelette-images.s3.us-east-1.amazonaws.com/00000-00001",
-      "timestamp": "2025-02-06",
-      "user": {
-        "name": "Emily Clarke",
-        "photo": "https://randomuser.me/api/portraits/thumb/women/25.jpg"
-      },
-      "slug": "classic-caesar-salad",
-      "ingredients": [
-        { "qty": 1, "measure": "Head", "name": "Romaine Lettuce, chopped" },
-        { "qty": 0.5, "measure": "Cup", "name": "Parmesan Cheese, grated" },
-        { "qty": 1, "measure": "Cup", "name": "Croutons" },
-        { "qty": 0.25, "measure": "Cup", "name": "Caesar Dressing" },
-        { "qty": 1, "measure": "Teaspoon", "name": "Black Pepper, freshly ground" }
-      ],
-      "method": [
-        "Wash and chop the romaine lettuce.",
-        "Toss lettuce with Parmesan cheese and croutons.",
-        "Drizzle Caesar dressing over the salad and mix well.",
-        "Sprinkle black pepper to taste before serving."
-      ],
-      "yield": 2
+  },
+  {
+    "id": 4,
+    "title": "Classic Caesar Salad",
+    "desc": "A fresh salad with crunchy romaine lettuce, Parmesan cheese, crispy croutons, and a rich Caesar dressing.",
+    "tags": ["Lunch", "Salad", "Healthy"],
+    "photo": "https://platelette-images.s3.us-east-1.amazonaws.com/00000-00001",
+    "timestamp": "2025-02-06",
+    "user": {
+      "name": "Emily Clarke",
+      "photo": "https://randomuser.me/api/portraits/thumb/women/25.jpg"
     },
-    {
-      "id": 5,
-      "title": "Chicken Tikka Masala",
-      "desc": "A flavorful Indian dish featuring tender chicken in a spiced, creamy tomato sauce, served with basmati rice.",
-      "tags": ["Dinner", "Indian", "Spicy"],
-      "photo": "https://platelette-images.s3.us-east-1.amazonaws.com/00000-00005",
-      "timestamp": "2025-02-06",
-      "user": {
-        "name": "Rajeev Patel",
-        "photo": "https://randomuser.me/api/portraits/thumb/men/30.jpg"
-      },
-      "slug": "chicken-tikka-masala",
-      "ingredients": [
-        { "qty": 2, "measure": "Piece", "name": "Chicken Breasts, diced" },
-        { "qty": 1, "measure": "Cup", "name": "Tomato Puree" },
-        { "qty": 0.5, "measure": "Cup", "name": "Heavy Cream" },
-        { "qty": 1, "measure": "Tablespoon", "name": "Garam Masala" },
-        { "qty": 1, "measure": "Teaspoon", "name": "Cumin" },
-        { "qty": 1, "measure": "Teaspoon", "name": "Paprika" },
-        { "qty": 1, "measure": "Cup", "name": "Basmati Rice, cooked" }
-      ],
-      "method": [
-        "Marinate chicken with garam masala, cumin, and paprika.",
-        "Sauté the chicken in a pan until golden brown.",
-        "Add tomato puree and simmer for 10 minutes.",
-        "Stir in heavy cream and cook for another 5 minutes.",
-        "Serve hot with basmati rice."
-      ],
-      "yield": 4
+    "slug": "classic-caesar-salad",
+    "ingredients": [
+      { "qty": 1, "measure": "Head", "name": "Romaine Lettuce, chopped" },
+      { "qty": 0.5, "measure": "Cup", "name": "Parmesan Cheese, grated" },
+      { "qty": 1, "measure": "Cup", "name": "Croutons" },
+      { "qty": 0.25, "measure": "Cup", "name": "Caesar Dressing" },
+      {
+        "qty": 1,
+        "measure": "Teaspoon",
+        "name": "Black Pepper, freshly ground"
+      }
+    ],
+    "method": [
+      "Wash and chop the romaine lettuce.",
+      "Toss lettuce with Parmesan cheese and croutons.",
+      "Drizzle Caesar dressing over the salad and mix well.",
+      "Sprinkle black pepper to taste before serving."
+    ],
+    "yield": 2
+  },
+  {
+    "id": 5,
+    "title": "Chicken Tikka Masala",
+    "desc": "A flavorful Indian dish featuring tender chicken in a spiced, creamy tomato sauce, served with basmati rice.",
+    "tags": ["Dinner", "Indian", "Spicy"],
+    "photo": "https://platelette-images.s3.us-east-1.amazonaws.com/00000-00005",
+    "timestamp": "2025-02-06",
+    "user": {
+      "name": "Rajeev Patel",
+      "photo": "https://randomuser.me/api/portraits/thumb/men/30.jpg"
     },
-    {
-      "id": 6,
-      "title": "Lemon Blueberry Muffins",
-      "desc": "Freshly baked muffins with a burst of blueberries and a hint of zesty lemon, perfect for a sweet breakfast or snack.",
-      "tags": ["Dessert", "Breakfast", "Baked Goods"],
-      "photo": "https://platelette-images.s3.us-east-1.amazonaws.com/00000-00006",
-      "timestamp": "2025-02-06",
-      "user": {
-        "name": "Sophie Mitchell",
-        "photo": "https://randomuser.me/api/portraits/thumb/women/38.jpg"
-      },
-      "slug": "lemon-blueberry-muffins",
-      "ingredients": [
-        { "qty": 2, "measure": "Cup", "name": "Flour" },
-        { "qty": 1, "measure": "Teaspoon", "name": "Baking Powder" },
-        { "qty": 0.5, "measure": "Teaspoon", "name": "Salt" },
-        { "qty": 0.5, "measure": "Cup", "name": "Sugar" },
-        { "qty": 1, "measure": "Cup", "name": "Blueberries" },
-        { "qty": 1, "measure": "Piece", "name": "Lemon, zested" },
-        { "qty": 1, "measure": "Cup", "name": "Milk" },
-        { "qty": 2, "measure": "Piece", "name": "Eggs" },
-        { "qty": 0.5, "measure": "Cup", "name": "Butter, melted" }
-      ],
-      "method": [
-        "Preheat oven to 375°F (190°C) and grease a muffin tin.",
-        "Mix flour, baking powder, salt, and sugar in a bowl.",
-        "In another bowl, whisk eggs, milk, melted butter, and lemon zest.",
-        "Combine wet and dry ingredients, then fold in blueberries.",
-        "Pour batter into muffin tin and bake for 18-20 minutes.",
-        "Let cool before serving."
-      ],
-      "yield": 12
-    }
+    "slug": "chicken-tikka-masala",
+    "ingredients": [
+      { "qty": 2, "measure": "Piece", "name": "Chicken Breasts, diced" },
+      { "qty": 1, "measure": "Cup", "name": "Tomato Puree" },
+      { "qty": 0.5, "measure": "Cup", "name": "Heavy Cream" },
+      { "qty": 1, "measure": "Tablespoon", "name": "Garam Masala" },
+      { "qty": 1, "measure": "Teaspoon", "name": "Cumin" },
+      { "qty": 1, "measure": "Teaspoon", "name": "Paprika" },
+      { "qty": 1, "measure": "Cup", "name": "Basmati Rice, cooked" }
+    ],
+    "method": [
+      "Marinate chicken with garam masala, cumin, and paprika.",
+      "Sauté the chicken in a pan until golden brown.",
+      "Add tomato puree and simmer for 10 minutes.",
+      "Stir in heavy cream and cook for another 5 minutes.",
+      "Serve hot with basmati rice."
+    ],
+    "yield": 4
+  },
+  {
+    "id": 6,
+    "title": "Lemon Blueberry Muffins",
+    "desc": "Freshly baked muffins with a burst of blueberries and a hint of zesty lemon, perfect for a sweet breakfast or snack.",
+    "tags": ["Dessert", "Breakfast", "Baked Goods"],
+    "photo": "https://platelette-images.s3.us-east-1.amazonaws.com/00000-00006",
+    "timestamp": "2025-02-06",
+    "user": {
+      "name": "Sophie Mitchell",
+      "photo": "https://randomuser.me/api/portraits/thumb/women/38.jpg"
+    },
+    "slug": "lemon-blueberry-muffins",
+    "ingredients": [
+      { "qty": 2, "measure": "Cup", "name": "Flour" },
+      { "qty": 1, "measure": "Teaspoon", "name": "Baking Powder" },
+      { "qty": 0.5, "measure": "Teaspoon", "name": "Salt" },
+      { "qty": 0.5, "measure": "Cup", "name": "Sugar" },
+      { "qty": 1, "measure": "Cup", "name": "Blueberries" },
+      { "qty": 1, "measure": "Piece", "name": "Lemon, zested" },
+      { "qty": 1, "measure": "Cup", "name": "Milk" },
+      { "qty": 2, "measure": "Piece", "name": "Eggs" },
+      { "qty": 0.5, "measure": "Cup", "name": "Butter, melted" }
+    ],
+    "method": [
+      "Preheat oven to 375°F (190°C) and grease a muffin tin.",
+      "Mix flour, baking powder, salt, and sugar in a bowl.",
+      "In another bowl, whisk eggs, milk, melted butter, and lemon zest.",
+      "Combine wet and dry ingredients, then fold in blueberries.",
+      "Pour batter into muffin tin and bake for 18-20 minutes.",
+      "Let cool before serving."
+    ],
+    "yield": 12
+  }
 ]
