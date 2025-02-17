@@ -11,9 +11,9 @@ export default function RecipePage({recipe}: {recipe: Recipe}) {
             <RecipePreviewCard recipe={{...recipe} as RecipePreview} />
             <Card className="mt-4 text-foreground">
                 <div className="w-full flex justify-between">
-                    <Button><Printer /></Button>
+                    <Button variant="hollow"><Printer /></Button>
                     <div className="flex gap-2">
-                        <Button><Share /></Button>
+                        <Button variant="hollow"><Share /></Button>
                         <Button><Heart /></Button>
                     </div>
                 </div>
