@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import unorm from "unorm";
 import Card from "../_components/cards/Card";
 import { Button } from "../_components/ui/Buttons";
+import testdata from '@/public/testdata.json';
 
 const titleToSlug = (title: string) =>
     unorm.nfd(title)
@@ -30,10 +31,22 @@ function page() {
         }) 
     }
 
+    const sendAll = async ()=>{
+        const promises = testdata.map(item => {
+            return fetch('https://api.platelette.com/test', {method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify({
+                ...item,
+                id: uuidv4()
+            })})
+        })
+        const results = await Promise.all(promises);
+        console.log(results);
+    }
+
   return (
     <div>
         <Card>
             <Button onClick={handleSend}>Send New Recipe</Button>
+            <Button onClick={sendAll}>Send All Recipes</Button>
         </Card>
     </div>
   )
