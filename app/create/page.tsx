@@ -35,6 +35,7 @@ function page() {
         const promises = testdata.map(item => {
             return fetch('https://api.platelette.com/test', {method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify({
                 ...item,
+                description: item.desc,
                 id: uuidv4()
             })})
         })
