@@ -2,11 +2,18 @@ import testData from '@/public/testdata.json'
 import RecipePage from './RecipePage';
 import { notFound } from 'next/navigation';
 import { MeasurementUnit, Recipe } from '@/app/types';
+import unorm from 'unorm';
+
 import { Metadata } from 'next';
 
-function titleToSlug(title: string) {
-    return title.toLowerCase().replaceAll(/\s*\b(a|an|the|of|in|from|on|at|to|by|for|about|as|into|like|through|after|over|between|against|under|without|before|within|along|during|around|among)\b\s+/gi, '').trim().replaceAll(/\s+/g, '-')
-}
+const titleToSlug = (title: string) =>
+    unorm.nfd(title)
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-') 
+      .trim();
 
 export function generateStaticParams() {
     return testData.map(each => {

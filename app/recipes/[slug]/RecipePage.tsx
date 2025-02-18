@@ -11,10 +11,10 @@ export default function RecipePage({recipe}: {recipe: Recipe}) {
             <RecipePreviewCard recipe={{...recipe} as RecipePreview} />
             <Card className="mt-4 text-foreground">
                 <div className="w-full flex justify-between">
-                    <Button variant="hollow"><Printer /></Button>
+                    <Button  variant="hollow"><Printer /></Button>
                     <div className="flex gap-2">
-                        <Button variant="hollow"><Share /></Button>
-                        <Button><Heart /></Button>
+                        <Button  variant="hollow"><Share /></Button>
+                        <Button ><Heart /></Button>
                     </div>
                 </div>
                 {recipe.yield && <p className="mb-2 text-center italic">{recipe.yield} servings</p>}

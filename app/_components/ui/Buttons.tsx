@@ -10,8 +10,8 @@ const styles: Record<ButtonVariant, string> = {
     hollow: buttonStyle2
 }
 
-export function Button({children, variant = 'primary', className, ...rest}: {children: React.ReactNode, variant?: ButtonVariant, className?: string}) {
-    return <button className={styles[variant]+` ${className ?? ''}`} {...rest}>{children}</button>
+export function Button({children, variant = 'primary', onClick, className, ...rest}: {children: React.ReactNode, variant?: ButtonVariant, onClick?: ()=>void, className?: string}) {
+    return <button onClick={onClick} className={styles[variant]+` ${className ?? ''}`} {...rest}>{children}</button>
 }
 
 export function LinkButton({children, href, variant = 'primary', className, ...rest}: {children: React.ReactNode, href: string, variant?: ButtonVariant, className?: string}) {
