@@ -2,8 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
-type fetchStatus = "loading" | "success" | "error"
+import { fetchStatus } from "../types";
 
 function useQuery(): [query: string | null, status: fetchStatus] {
     const params = useSearchParams();

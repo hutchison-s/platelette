@@ -27,7 +27,7 @@ export default function RecipePage({recipe}: {recipe: Recipe}) {
                 <p className="font-display text-xl font-light">Instructions</p>
                 <div className="indent-4 pt-2 pb-8">
                     <ul>
-                        {recipe.method.map((m, idx) => <li key={idx}>{m}</li>)}
+                        {recipe.instructions.map((m, idx) => <li key={idx}>{m}</li>)}
                     </ul>
                 </div>
             </Card>

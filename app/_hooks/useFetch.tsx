@@ -1,8 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react"
-
-type fetchStatus = "loading" | "success" | "error"
+import { fetchStatus } from "../types";
 
 function useFetch<T>(url: string): [data: T | undefined, status: fetchStatus] {
     const [data, setData] = useState<T | undefined>();
