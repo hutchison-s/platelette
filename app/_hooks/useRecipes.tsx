@@ -13,7 +13,7 @@ const initialContext: recipeContextType = {recipes: [], status: 'loading', addRe
 const recipeContext = createContext<recipeContextType>(initialContext);
 
 export function RecipeProvider ({children}: {children: React.ReactNode}) {
-    const [data, status] = useFetch<Recipe[]>('https://api.platelette.com/test');
+    const [data, status] = useFetch<Recipe[]>('https://api.platelette.com/recipes');
     const [recipes, setRecipes] = useState<Recipe[]>([]);
 
     useEffect(()=>{
