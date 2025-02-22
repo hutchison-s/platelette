@@ -2,8 +2,10 @@
 import { v4 as uuidv4 } from "uuid";
 import unorm from "unorm";
 import Card from "../_components/cards/Card";
-import { Button } from "../_components/ui/Buttons";
-import testdata from '@/public/testdata.json';
+import { ButtonStyles } from "../_components/ui/Buttons";
+import { useRef } from "react";
+import { useRecipes } from "../_hooks/useRecipes";
+import SectionHeading from "../_components/ui/SectionHeading";
 
 const titleToSlug = (title: string) =>
     unorm.nfd(title)
@@ -14,43 +16,47 @@ const titleToSlug = (title: string) =>
       .replace(/-+/g, '-') 
       .trim();
 
-function page() {
+function CreatePage() {
+    const inputRef = useRef<HTMLTextAreaElement>(null)
+    const credRef = useRef<HTMLInputElement>(null)
+    const {addRecipe} = useRecipes();
 
     const handleSend = ()=>{
-        fetch('https://api.platelette.com/test', {method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify({
+        const input = inputRef.current?.value || '';
+        const inputObject = JSON.parse(input);
+        const newRecipe = {
             id: uuidv4(),
-            title: 'New Fast and Easy Recipe Made With Tofu',
-            description: 'Why eat anything else?',
-            slug: titleToSlug('New Fast and Easy Recipe Made With Tofu')
-        })})
+            ...inputObject,
+            slug: titleToSlug(inputObject.title)
+        }
+        fetch('https://api.platelette.com/recipes', {method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify(newRecipe)})
         .then(res => {
-            if (res.ok) console.log('Success')
+            if (res.ok) {
+                addRecipe(newRecipe, credRef.current?.value || 'undefined');
+            }
         })
         .catch(err => {
             console.error(err);
+            
         }) 
     }
 
-    const sendAll = async ()=>{
-        const promises = testdata.map(item => {
-            return fetch('https://api.platelette.com/test', {method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify({
-                ...item,
-                description: item.desc,
-                id: uuidv4()
-            })})
-        })
-        const results = await Promise.all(promises);
-        console.log(results);
-    }
 
   return (
     <div>
-        <Card>
-            <Button onClick={handleSend}>Send New Recipe</Button>
-            <Button onClick={sendAll}>Send All Recipes</Button>
+        <SectionHeading>New Recipe</SectionHeading>
+        <Card className="grid place-items-center">
+            <div className="w-full max-w-[600px]">
+                <label htmlFor="json" className="block">Enter or paste JSON for new recipe below</label>
+                <textarea ref={inputRef} name="json" id="json" className="border-1 border-foreground p-2 rounded-std w-full my-2" >
+                </textarea>
+                <label htmlFor="creds" className="block">Enter CreatorCode</label>
+                <input ref={credRef} type="text" name="creds" id="creds" placeholder="CreatorCode..." className="border-1 border-foreground p-2 rounded-std w-full my-2"/>
+                <button onClick={handleSend} className={ButtonStyles.primary+" mx-auto block mt-2"}>Send New Recipe</button>
+            </div>
         </Card>
     </div>
   )
 }
 
-export default page
+export default CreatePage

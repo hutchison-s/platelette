@@ -34,7 +34,6 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
 export default async function Page({params}: {params: Promise<{slug: string}>}) {
     const {slug} = await params;
     const r = await getRecipe(slug);
-    console.log('retrieved', r)
     if (!r) return notFound();
     return (
         <>

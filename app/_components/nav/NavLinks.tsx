@@ -1,4 +1,4 @@
-import { Home, Info } from "lucide-react";
+import { Home, Info, PlusCircle } from "lucide-react";
 import Link from "next/link";
 
 function NavLinks() {
@@ -11,6 +11,10 @@ function NavLinks() {
             <Link href={'/about'}>
                 <span className="sm:hidden"><Info /></span>
                 <span className="hidden sm:block">About</span>
+            </Link>
+            <Link href={'/create'}>
+                <span className="sm:hidden"><PlusCircle /></span>
+                <span className="hidden sm:block">Create</span>
             </Link>
         </>
     )
