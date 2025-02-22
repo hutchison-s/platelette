@@ -1,22 +1,24 @@
-export type User = {
+export type fetchStatus = "loading" | "success" | "error"
+
+export type AuthorInfo = {
     name: string;
     photo: string;
   };
 
 export interface RecipePreview {
-  id: number;
+    id: string;
     title: string;
-    desc: string;
+    description: string;
     tags: string[];
     photo: string;
-    timestamp: string;
-    user: User;
+    created: string;
+    author: AuthorInfo;
     slug: string,
 }
 
 export interface Recipe extends RecipePreview {
     ingredients: Ingredient[],
-    method: string[],
+    instructions: string[],
     yield?: number
   };
 

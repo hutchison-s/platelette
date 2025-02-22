@@ -12,10 +12,10 @@ function RecipePreviewCard({recipe}: {recipe: RecipePreview}) {
             <div className="w-full flex gap-2 justify-between items-center">
                 <h3 className="shrink font-heading font-bold text-foreground text-xl md:text-2xl"><Link href={`/recipes/${recipe.slug}`}>{recipe.title}</Link></h3>
                 <div className="shrink-0 bg-background2 border-1 border-background2 outline outline-[1px] outline-primary rounded-full size-8 overflow-hidden md:size-12">
-                    <img src={recipe.user.photo} alt="user photo" width={'100%'} className="object-cover"/>
+                    <img src={recipe.author.photo} alt="user photo" width={'100%'} className="object-cover"/>
                 </div>
             </div>
-            <p className="font-body font-light text-foreground text-sm md:text-md" >{recipe.desc}</p>
+            <p className="font-body font-light text-foreground text-sm md:text-md" >{recipe.description}</p>
             <div className="text-primary2 text-sm font-light font-body flex gap-2">
                 {recipe.tags.map((tag, idx) => {
                     return (
@@ -27,7 +27,7 @@ function RecipePreviewCard({recipe}: {recipe: RecipePreview}) {
                     )
                 })}
             </div>
-            <p className="text-right text-faded text-xs">{recipe.user.name} - {recipe.timestamp}</p>
+            <p className="text-right text-faded text-xs">{recipe.author.name} - {recipe.created}</p>
         </Card>
     )
 }
