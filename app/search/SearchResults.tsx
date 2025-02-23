@@ -7,12 +7,12 @@ import RecipePreviewCard from "../_components/cards/RecipePreviewCard";
 import Card from "../_components/cards/Card";
 import { Loader } from "lucide-react";
 import { LinkButton } from "../_components/ui/Buttons";
-import { useRecipes } from "../_hooks/useRecipes";
+import useFetch from "../_hooks/useFetch";
 
 function SearchResults() {
     const [query, status] = useQuery();
-    const {recipes} = useRecipes();
-    const [filtered, setFiltered] = useState(recipes)
+    const [recipes, recipeStatus] = useFetch<Recipe[]>('https://api.platelette.com/recipes');
+    const [filtered, setFiltered] = useState(recipes || [])
 
     useEffect(()=>{
         if (status != 'success' || !recipes) return;
@@ -25,9 +25,9 @@ function SearchResults() {
     }, [status, query, recipes])
     
     switch(true) {
-        case status == 'success' && recipes.length > 0:
+        case status == 'success' && recipeStatus == 'success' && recipes && recipes.length > 0:
             return <section className="grid gap-2">{filtered.map(r => <RecipePreviewCard recipe={{...r}} key={r.id}/>)}</section>;
-        case status == 'success' && recipes.length == 0:
+        case status == 'success' && recipeStatus == 'success' && recipes && recipes.length == 0:
             return <Card className="text-center"><p className="text-center my-8 text-2xl font-light">No results found</p><LinkButton href="/" className="mx-auto">Home</LinkButton></Card>
         case status == 'error':
             return <Card>

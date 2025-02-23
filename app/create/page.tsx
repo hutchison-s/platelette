@@ -4,7 +4,6 @@ import unorm from "unorm";
 import Card from "../_components/cards/Card";
 import { ButtonStyles } from "../_components/ui/Buttons";
 import { useRef } from "react";
-import { useRecipes } from "../_hooks/useRecipes";
 import SectionHeading from "../_components/ui/SectionHeading";
 
 const titleToSlug = (title: string) =>
@@ -19,7 +18,6 @@ const titleToSlug = (title: string) =>
 function CreatePage() {
     const inputRef = useRef<HTMLTextAreaElement>(null)
     const credRef = useRef<HTMLInputElement>(null)
-    const {addRecipe} = useRecipes();
 
     const handleSend = ()=>{
         const input = inputRef.current?.value || '';
@@ -32,7 +30,7 @@ function CreatePage() {
         fetch('https://api.platelette.com/recipes', {method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify(newRecipe)})
         .then(res => {
             if (res.ok) {
-                addRecipe(newRecipe, credRef.current?.value || 'undefined');
+                console.log('recipe added')
             }
         })
         .catch(err => {
