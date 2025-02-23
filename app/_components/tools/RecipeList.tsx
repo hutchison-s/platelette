@@ -2,15 +2,16 @@
 
 import RecipePreviewCard from "../cards/RecipePreviewCard";
 import Card from "../cards/Card";
-import {useRecipes} from "@/app/_hooks/useRecipes";
 import { Loader } from "lucide-react";
+import useFetch from "@/app/_hooks/useFetch";
+import { Recipe } from "@/app/types";
 
 function RecipeList() {
-    const {recipes, status} = useRecipes()
+    const [recipes, status] = useFetch<Recipe[]>('https://api.platelette.com/recipes')
 
     return (
         <>
-        {status == 'success'  
+        {status == 'success' && recipes 
         &&  <section className="grid gap-4 max-w-600 mx-auto lg:max-w-full lg:grid-cols-2">
                 {recipes.map(r => <RecipePreviewCard recipe={r} key={r.id}/>)}
             </section>}
