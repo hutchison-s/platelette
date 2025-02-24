@@ -24,3 +24,11 @@ body {
   background: var(--background);
   font-family: var(--font-body)
 }
+
+*:focus-visible:not(#mobileMenu) {
+  outline: 4px solid gold;
+  outline-offset: 1px;
+}
+#mobileMenu:focus-visible {
+  border: 4px solid gold;
+}

@@ -13,7 +13,6 @@ function useFetch<T>(url: string): [data: T | undefined, status: fetchStatus] {
                 .then(res => res.json())
                 .then(json => {
                     setData(json);
-                    setStatus('success');
                 });
         } catch (err) {
             setStatus('error');
@@ -21,6 +20,12 @@ function useFetch<T>(url: string): [data: T | undefined, status: fetchStatus] {
         }
         
     }, [url])
+
+    useEffect(()=>{
+        if (data != undefined) {
+            setStatus('success')
+        }
+    }, [data])
 
     return [data, status]
 }
