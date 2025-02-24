@@ -19,17 +19,6 @@
   
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--licorice);
-    --background2: 0 0 0;
-    --foreground: var(--linen);
-    --primary: var(--fire-brick);
-    --primary2: var(--poppy);
-    --secondary: var(--linen);
-  }
-}
-
 body {
   color: var(--foreground);
   background: var(--background);
@@ -42,16 +31,5 @@ body {
 @media screen and (min-width: 1024px) {
   .hero-bg {
     background-image: linear-gradient(to right, #000000aa,#00000055 30%, #fffffff5 50%), url('/hero.webp');
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .hero-bg {
-    background-image: linear-gradient(to bottom, #000000aa, #00000033 30%, #000000f5 45%), url('/hero.webp');
-  }
-  @media screen and (min-width: 1024px) {
-    .hero-bg {
-      background-image: linear-gradient(to right, #000000aa,#00000055 30%, #000000f5 50%), url('/hero.webp');
-    }
   }
 }
