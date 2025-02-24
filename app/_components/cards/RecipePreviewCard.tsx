@@ -3,9 +3,9 @@ import Card from "./Card";
 import { RecipePreview } from "@/app/types";
 
 
-function RecipePreviewCard({recipe}: {recipe: RecipePreview}) {
+function RecipePreviewCard({recipe, className=''}: {recipe: RecipePreview, className?: string}) {
     return (
-        <Card className="grid gap-2">
+        <Card className={"grid gap-2 "+className}>
             <Link href={`/recipes/${recipe.slug}`}>
                 <img src={recipe.photo} alt='Recipe photo' width={200} className="w-full h-32 object-cover rounded-std md:h-60"/>
             </Link>
