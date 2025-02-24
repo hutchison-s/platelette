@@ -1,18 +1,20 @@
-import Card from "../cards/Card";
+import { LinkButton } from "./Buttons";
 
 function Hero() {
     return (
-        <Card className="my-12 hero-bg bg-cover">
-            <section className="flex p-xtra gap-8 items-center flex-wrap lg:flex-nowrap ">
-            <div className="bg-gradient-to-br from-white to-stone-200 bg-clip-text grid leading-none flex-2 text-transparent font-bold font-body uppercase drop-shadow-2xl text-[3.5rem] sm:text-[3.5rem] md:text-[4.5rem]">
-                DISCOVER<br/>SHARE<br/>SAVOR
+        <section className="absolute w-screen top-[60px] left-0 h-fit px-6 py-8 hero-bg box-border md:px-8 lg:flex lg:justify-center items-center bg-gradient-to-br from-background to-background2 lg:px-[8vw] lg:flex-wrap lg:gap-y-6 lg:gap-x-12">
+            <div className="text-left text-[4rem] md:text-[6rem] leading-[4rem] md:leading-[6rem] font-sans font-black flex flex-col text-transparent bg-gradient-to-br from-secondary/80 to-secondary bg-clip-text drop-shadow-md lg:items-end lg:py-10 lg:w-fit lg:shrink">
+                <span className="w-full text-left">DISCOVER</span>
+                <span className="w-full text-left">SHARE</span>
+                <span className="w-full text-left">SAVOR</span>
             </div>
-            <div className="flex-3 p-xtra rounded-xtra mt-8 sm:mt-0 lg:pl-20">
-                <p className="font-heading font-light text-xl md:leading-loose text-foreground">Explore a world of culinary creativity at your fingertips. Share your favorite recipes, discover dishes from food lovers around the globe, and connect over the meals that bring us together. Whether you&apos;re a seasoned chef or just starting your culinary journey, Platelette is your community for all things food.</p>
+            <p className="font-heading font-light text-xl md:leading-loose text-transparent bg-gradient-to-tl from-primary to-foreground bg-clip-text py-8 md:text-2xl lg:flex-1 lg:max-w-600 xl:text-3xl xl:leading-[3rem]">
+                Explore a world of culinary creativity at your fingertips. Share your favorite recipes, discover dishes from food lovers around the globe, and connect over the meals that bring us together.</p>
+            <div className="flex w-full justify-center gap-4 md:flex-full md:gap-10">
+                <LinkButton href='#' variant="hollow" className="min-w-32 md:min-w-40 text-center">Browse</LinkButton>
+                <LinkButton href='##' className="min-w-32 md:min-w-40 text-center">Join</LinkButton>
             </div>
-            
         </section>
-        </Card>
     )
 }
 

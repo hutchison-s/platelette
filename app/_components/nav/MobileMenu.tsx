@@ -11,7 +11,7 @@ function MobileMenu() {
     return (
         <nav onClick={toggleOpen} className={`fixed sm:hidden bottom-8 right-2 overflow-hidden shadow-foreground/25 shadow-lg size-12 rounded-full transition-all min-h-12 h-fit flex flex-col gap-4 print:hidden`}>
             <button className="text-white rounded-full bg-primary size-12 grid place-items-center absolute bottom-0 left-0"><MenuIcon /></button>
-                <div className={`text-white w-full flex flex-col overflow-hidden items-center bg-primary transition-all duration-600 ${isOpen ? 'p-4 gap-4 pb-14' : 'shrink h-0 p-0 gap-0 pb-0'}`}>
+                <div className={`text-white w-full flex flex-col overflow-hidden items-center bg-primary transition-all duration-600 ${isOpen ? 'p-4 gap-4 pb-14 shrink-0' : 'shrink h-0 p-0 gap-0 pb-0'}`}>
                     <NavLinks />
                 </div>
 

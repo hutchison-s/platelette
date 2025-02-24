@@ -24,12 +24,3 @@ body {
   background: var(--background);
   font-family: var(--font-body)
 }
-.hero-bg {
-  background-image: linear-gradient(to bottom, #000000aa, #00000033 30%, #fffffff5 45%), url('/hero.webp');
-  ;
-}
-@media screen and (min-width: 1024px) {
-  .hero-bg {
-    background-image: linear-gradient(to right, #000000aa,#00000055 30%, #fffffff5 50%), url('/hero.webp');
-  }
-}
