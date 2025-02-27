@@ -5,12 +5,14 @@ import { MeasurementUnit, Recipe } from '@/app/types';
 import { Metadata } from 'next';
 
 export async function generateStaticParams() {
-    const recipes: Recipe[] = await fetch('https://api.platelette.com/recipes').then(res => res.json())
-    return recipes.map(each => {return {slug: each.slug}})
+    const recipes: {items: Recipe[], count: number, cursor?: string} = await fetch('https://api.platelette.com/recipes').then(res => res.json())
+    return recipes.items.map(each => {return {slug: each.slug}})
 }
 
-function getRecipe(slug: string): Promise<Recipe> {
-    return fetch('https://api.platelette.com/slugs/'+slug).then(res => res.json());
+async function getRecipe(slug: string): Promise<Recipe> {
+    const response = await fetch('https://api.platelette.com/recipes?slug='+slug).then(res => res.json())
+    console.log(response);
+    return response.items[0]
 }
 
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {

@@ -11,8 +11,8 @@ import useFetch from "../_hooks/useFetch";
 
 function SearchResults() {
     const [query, status] = useQuery();
-    const [recipes, recipeStatus] = useFetch<Recipe[]>('https://api.platelette.com/recipes');
-    const [filtered, setFiltered] = useState(recipes || [])
+    const [recipes, recipeStatus] = useFetch<{items: Recipe[], count: number, cursor?: string}>('https://api.platelette.com/recipes');
+    const [filtered, setFiltered] = useState(recipes?.items || [])
 
     useEffect(()=>{
         if (status != 'success' || !recipes) return;
@@ -21,13 +21,13 @@ function SearchResults() {
             const queryTest = new RegExp(query || ' ', 'gi');
             return queryTest.test(fullText);
         }
-        setFiltered(recipes.filter(queryFilter));
+        setFiltered(recipes.items.filter(queryFilter));
     }, [status, query, recipes])
     
     switch(true) {
-        case status == 'success' && recipeStatus == 'success' && recipes && recipes.length > 0:
+        case status == 'success' && recipeStatus == 'success' && recipes && filtered.length > 0:
             return <section className="grid gap-2">{filtered.map(r => <RecipePreviewCard recipe={{...r}} key={r.id}/>)}</section>;
-        case status == 'success' && recipeStatus == 'success' && recipes && recipes.length == 0:
+        case status == 'success' && recipeStatus == 'success' && recipes && filtered.length == 0:
             return <Card className="text-center"><p className="text-center my-8 text-2xl font-light">No results found</p><LinkButton href="/" className="mx-auto">Home</LinkButton></Card>
         case status == 'error':
             return <Card>
