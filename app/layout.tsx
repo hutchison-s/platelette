@@ -3,6 +3,7 @@ import { Playwrite_AU_NSW, Quicksand, Inter } from "next/font/google";
 import "./globals.css";
 import PageHead from "./_components/nav/PageHead";
 import PageFooter from "./_components/nav/PageFooter";
+import { AuthProvider } from "./_hooks/useAuth";
 
 
 const display = Playwrite_AU_NSW({
@@ -42,10 +43,12 @@ export default function RootLayout({
       <body
         className={`${bodytext.variable} ${heading.variable} ${display.variable} antialiased w-screen min-h-screen flex flex-col bg-background`}
       >
-        <PageHead />
-        <main className="grow bg-background p-std w-full sm:px-8 lg:max-w-[1600px] mx-auto">
-          {children}
-        </main>
+        <AuthProvider>
+          <PageHead />
+          <main className="grow bg-background p-std w-full sm:px-8 lg:max-w-[1600px] mx-auto">
+            {children}
+          </main>
+        </AuthProvider>
         <PageFooter />
       </body>
     </html>
