@@ -13,7 +13,7 @@ import { UserController } from '../_utils/apiController'
 import { TextInput } from '../_components/ui/Inputs'
 
 function AccountPage() {
-    const {user} = useAuth()
+    const {user, login} = useAuth()
     const router = useRouter()
 
     useEffect(()=>{
@@ -29,8 +29,12 @@ function AccountPage() {
             ...user,
             name: fd.get('name') as string
         }, `/${user?.sub}`).then(res => {
+            if (!res) throw new Error('Missing user update response')
             console.log(res);
+            login({...user, name: fd.get('name') as string});
             router.refresh();
+        }).catch(err => {
+            console.error(err);
         })
     }
 
