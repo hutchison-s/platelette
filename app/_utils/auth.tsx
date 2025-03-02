@@ -3,7 +3,7 @@ import { AuthorInfo } from "../types";
 import { UserController } from "./apiController";
 
 export const codeForToken = async (code: string)=>{
-    const res = await fetch(`https://api.platelette.com/auth?code=${code}`, {method: 'GET', headers: {'Accept': "application/json"}});
+    const res = await fetch(`https://api.platelette.com/auth?code=${code}`, {credentials: 'include', method: 'GET', headers: {'Accept': "application/json"}});
     if (!res.ok) {
         console.log('response status', res.status);
         return null;
