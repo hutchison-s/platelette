@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { FormEventHandler, useEffect } from 'react'
 import { useAuth } from '../_hooks/useAuth'
 import SectionHeading from '../_components/ui/SectionHeading'
 import Card from '../_components/cards/Card'
@@ -9,6 +9,8 @@ import UserPhoto from '../_components/ui/UserPhoto'
 import { ButtonStyles } from '../_components/ui/Buttons'
 import Link from 'next/link'
 import { logoutLink } from '../_utils/constants'
+import { UserController } from '../_utils/apiController'
+import { TextInput } from '../_components/ui/Inputs'
 
 function AccountPage() {
     const {user} = useAuth()
@@ -20,6 +22,18 @@ function AccountPage() {
         }
     }, [router, user])
 
+    const handleEdit: FormEventHandler<HTMLFormElement> = (e)=>{
+        const controller = new UserController();
+        const fd = new FormData(e.currentTarget);
+        controller.update({
+            ...user,
+            name: fd.get('name') as string
+        }, `/${user?.sub}`).then(res => {
+            console.log(res);
+            router.refresh();
+        })
+    }
+
   return (
     <>
         <SectionHeading>Account Information</SectionHeading>
@@ -28,6 +42,12 @@ function AccountPage() {
             <p>Email: <em>{user?.email}</em></p>
             {user?.photo && <div><UserPhoto url={user.photo} name={user.name}/></div>}
             <Link className={ButtonStyles.primary+' block w-fit'} href={logoutLink} >Log Out</Link>
+        </Card>
+        <Card>
+            <p>Edit Info:</p>
+            <form onSubmit={handleEdit}>
+                <TextInput rest={{defaultValue: user?.name}} label='Name' name='name' />
+            </form>
         </Card>
     </>
   )
