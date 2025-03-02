@@ -2,12 +2,14 @@ import { ApiResponse, AuthorInfo, Recipe } from "../types";
 
 export class ApiController<T> {
     protected BASE: string;
+    protected includeCredentials: boolean;
 
-    constructor(baseURL: string) {
+    constructor(baseURL: string, credentialed: boolean = false) {
         this.BASE = baseURL;
+        this.includeCredentials = credentialed
     }
     protected async safeGET(endpoint: string) : Promise<ApiResponse<T> | null> {
-        return await fetch(this.BASE+endpoint)
+        return await fetch(this.BASE+endpoint, {credentials: this.includeCredentials ? 'include' : undefined})
             .then(res => res.json())
             .catch(err => {
                 console.error(err);
@@ -46,7 +48,7 @@ export class ApiController<T> {
         return this.safeGET('');
     }
     async getOne(id: string): Promise<T | null> {
-        return fetch(`${this.BASE}/${id}`)
+        return fetch(`${this.BASE}/${id}`, {credentials: this.includeCredentials ? 'include' : undefined})
         .then(res => res.json())
         .catch(err => {
             console.error(err);
@@ -87,6 +89,6 @@ export class RecipeController extends ApiController<Recipe> {
 
 export class UserController extends ApiController<AuthorInfo> {
     constructor() {
-        super('https://api.platelette.com/accounts');
+        super('https://api.platelette.com/accounts', true);
     }
 }
