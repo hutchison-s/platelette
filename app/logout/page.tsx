@@ -9,8 +9,15 @@ function LogoutPage() {
     const router = useRouter();
 
     useEffect(()=>{
-        logout();
-        router.push('/')
+        fetch('https://api.platelette.com/auth/logout')
+          .catch(err => {
+            console.error(err);
+          })
+          .finally(()=>{
+            logout();
+            router.push('/')
+          })
+        
     }, [logout, router])
   return (
     <div className='w-full min-h-[400px] flex flex-col justify-center items-center gap-4'>

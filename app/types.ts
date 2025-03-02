@@ -1,5 +1,11 @@
 export type fetchStatus = "loading" | "success" | "error"
 
+export interface ApiResponse<T> {
+  items: T[],
+  count: number,
+  cursor?: string
+}
+
 export type AuthorInfo = {
     name: string;
     photo?: string;

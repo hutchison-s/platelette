@@ -4,10 +4,10 @@ import RecipePreviewCard from "../cards/RecipePreviewCard";
 import Card from "../cards/Card";
 import { Loader } from "lucide-react";
 import useFetch from "@/app/_hooks/useFetch";
-import { Recipe } from "@/app/types";
+import { ApiResponse, Recipe } from "@/app/types";
 
 function RecipeList() {
-    const [recipes, status] = useFetch<{items: Recipe[], count: number, cursor?: string}>('https://api.platelette.com/recipes')
+    const [recipes, status] = useFetch<ApiResponse<Recipe>>('https://api.platelette.com/recipes?sort=latest&limit=3')
 
     return (
         <>
