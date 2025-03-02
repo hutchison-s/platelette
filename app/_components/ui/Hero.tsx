@@ -1,4 +1,4 @@
-import { LinkButton } from "./Buttons";
+import ActionButtons from "./ActionButtons";
 
 function Hero() {
     return (
@@ -11,8 +11,7 @@ function Hero() {
             <p className="font-heading font-light text-xl md:leading-loose text-transparent bg-gradient-to-tl from-primary to-foreground bg-clip-text py-8 md:text-2xl lg:flex-1 lg:max-w-600 xl:text-3xl xl:leading-[3rem]">
                 Explore a world of culinary creativity at your fingertips. Share your favorite recipes, discover dishes from food lovers around the globe, and connect over the meals that bring us together.</p>
             <div className="flex w-full justify-center gap-4 md:flex-full md:gap-10">
-                <LinkButton href='#' variant="hollow" className="min-w-32 md:min-w-40 text-center">Browse</LinkButton>
-                <LinkButton href='##' className="min-w-32 md:min-w-40 text-center">Join</LinkButton>
+                <ActionButtons />
             </div>
         </section>
     )

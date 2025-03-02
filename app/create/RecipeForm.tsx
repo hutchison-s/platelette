@@ -55,12 +55,11 @@ function RecipeForm() {
           }
         }
 
-        const uploadReponse = await fetch('https://api.platelette.com/recipes', {
+        await fetch('https://api.platelette.com/recipes', {
           method: "POST",
-          headers: {"Content-Type": "application/json", "Authorization": "Bearer pEtCa21n7f5NcAUq"}, // REMOVE BEFORE COMMIT
+          headers: {"Content-Type": "application/json"},
           body: JSON.stringify(newRecipe)
         }).then(res => res.json()).catch(err => console.log(err));
-        console.log(uploadReponse)
     }
   return (
     <>

@@ -26,7 +26,7 @@ function SearchResults() {
     
     switch(true) {
         case status == 'success' && recipeStatus == 'success' && recipes && filtered.length > 0:
-            return <section className="grid gap-2">{filtered.map(r => <RecipePreviewCard recipe={{...r}} key={r.id}/>)}</section>;
+            return <section className="grid gap-4 max-w-600 mx-auto md:max-w-[98%] md:grid-cols-2 xl:grid-cols-3">{filtered.map(r => <RecipePreviewCard recipe={{...r}} key={r.id}/>)}</section>;
         case status == 'success' && recipeStatus == 'success' && recipes && filtered.length == 0:
             return <Card className="text-center"><p className="text-center my-8 text-2xl font-light">No results found</p><LinkButton href="/" className="mx-auto">Home</LinkButton></Card>
         case status == 'error':

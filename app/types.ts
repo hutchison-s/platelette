@@ -2,7 +2,9 @@ export type fetchStatus = "loading" | "success" | "error"
 
 export type AuthorInfo = {
     name: string;
-    photo: string;
+    photo?: string;
+    sub?: string,
+    email?: string
   };
 
 export interface RecipePreview {

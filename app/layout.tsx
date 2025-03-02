@@ -41,7 +41,7 @@ export default function RootLayout({
         <link rel="icon" href="/logo-red.png" />
       </head>
       <body
-        className={`${bodytext.variable} ${heading.variable} ${display.variable} antialiased w-screen min-h-screen flex flex-col bg-background`}
+        className={`${bodytext.variable} ${heading.variable} ${display.variable} antialiased overflow-x-hidden w-screen min-h-screen flex flex-col bg-background`}
       >
         <AuthProvider>
           <PageHead />

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Card from "./Card";
 import { RecipePreview } from "@/app/types";
+import UserPhoto from "../ui/UserPhoto";
 
 
 function RecipePreviewCard({recipe, className=''}: {recipe: RecipePreview, className?: string}) {
@@ -12,7 +13,7 @@ function RecipePreviewCard({recipe, className=''}: {recipe: RecipePreview, class
             <div className="w-full flex gap-2 justify-between items-center">
                 <h3 className="shrink font-heading font-bold text-foreground text-xl md:text-2xl"><Link href={`/recipes/${recipe.slug}`}>{recipe.title}</Link></h3>
                 <div className="shrink-0 bg-background2 border-1 border-background2 outline outline-[1px] outline-primary rounded-full size-8 overflow-hidden md:size-12">
-                    <img src={recipe.author.photo} alt="user photo" width={'100%'} className="object-cover"/>
+                    <UserPhoto url={recipe.author.photo} name={recipe.author.name}/>
                 </div>
             </div>
             <p className="font-body font-light text-foreground text-sm md:text-md" >{recipe.description}</p>
