@@ -26,7 +26,7 @@ function AccountPage() {
             <h3 className='font-heading font-bold my-4 text-xl'>Name: {user?.name}</h3>
             <p>Email: <em>{user?.email}</em></p>
             {user?.photo && <div><UserPhoto url={user.photo} name={user.name}/></div>}
-            <Link className={ButtonStyles.primary+' block w-fit'} href='https://auth.platelette.com/logout?client_id=27a4hidci87i37h6ufhdg5mo4&scope=aws.cognito.signin.user.admin+email+openid+profile&logout_uri=http%3A%2F%2Flocalhost%3A3000%2Flogout' >Log Out</Link>
+            <Link className={ButtonStyles.primary+' block w-fit'} href='https://auth.platelette.com/logout?client_id=27a4hidci87i37h6ufhdg5mo4&scope=aws.cognito.signin.user.admin+email+openid+profile&logout_uri=https%3A%2F%2Fwww.platelette.com%2Flogout' >Log Out</Link>
         </Card>
     </>
   )
