@@ -6,12 +6,14 @@ import { tokenToUser } from "../_utils/auth";
 type AuthType = {
     login: (u: AuthorInfo)=>void,
     logout: ()=>void,
+    update: (u: Partial<AuthorInfo>) => void,
     user?: AuthorInfo
 }
 
 const inital: AuthType = {
     login: (u: AuthorInfo)=>console.log(u.name),
     logout: ()=>null,
+    update: (u: Partial<AuthorInfo>) => console.log(u),
     user: undefined
 }
 
@@ -25,6 +27,15 @@ export function AuthProvider({children}: {children: React.ReactNode}) {
     const logout = ()=>{
         localStorage.removeItem('jwt')
         setUser(undefined)
+    }
+    const update = (u: Partial<AuthorInfo>) => {
+        if (!user) return;
+        setUser(prev => {
+            return {
+                ...prev,
+                ...u
+            }
+        })
     }
 
     useEffect(()=>{
@@ -42,7 +53,7 @@ export function AuthProvider({children}: {children: React.ReactNode}) {
     }, [])
 
     return (
-        <AuthContext.Provider value={{login, logout, user}}>
+        <AuthContext.Provider value={{update, login, logout, user}}>
             {children}
         </AuthContext.Provider>
     )
