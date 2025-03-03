@@ -2,6 +2,7 @@ import Link from "next/link";
 import Card from "./Card";
 import { RecipePreview } from "@/app/types";
 import UserPhoto from "../ui/UserPhoto";
+import DateString from "../ui/DateString";
 
 
 function RecipePreviewCard({recipe, className=''}: {recipe: RecipePreview, className?: string}) {
@@ -28,7 +29,7 @@ function RecipePreviewCard({recipe, className=''}: {recipe: RecipePreview, class
                     )
                 })}
             </div>
-            <p className="text-right text-faded text-xs">{recipe.author.name} - {recipe.created}</p>
+            <p className="text-right text-faded text-xs">{recipe.author.name} - <DateString time={recipe.created} /></p>
         </Card>
     )
 }
