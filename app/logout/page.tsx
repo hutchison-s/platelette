@@ -9,7 +9,7 @@ function LogoutPage() {
     const router = useRouter();
 
     useEffect(()=>{
-        fetch('https://api.platelette.com/auth/logout')
+        fetch('https://api.platelette.com/auth/logout', {credentials: 'include'})
           .catch(err => {
             console.error(err);
           })
