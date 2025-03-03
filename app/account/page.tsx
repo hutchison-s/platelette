@@ -25,6 +25,7 @@ function AccountPage() {
     }, [router, user])
 
     const handleEdit: FormEventHandler<HTMLFormElement> = (e)=>{
+        e.preventDefault();
         const controller = new UserController();
         const fd = new FormData(e.currentTarget);
         controller.update({
