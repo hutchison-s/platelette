@@ -13,7 +13,7 @@ function Initial() {
     <div className="size-8 text-sm aspect-square rounded-full border-1 border-background2 text-background2 font-light font-body grid place-items-center">
       <Link
         href={user ? "/account" : loginLink}
-        className="size-full grid place-items-center bg-primary rounded-full"
+        className="size-full grid place-items-center bg-primary rounded-full overflow-hidden"
       >
         {user 
           ? <UserPhoto url={user.photo} name={user.name} />
