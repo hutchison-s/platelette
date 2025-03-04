@@ -117,7 +117,7 @@ function PhotoUploader({closeEditor}: {closeEditor: ()=>void}) {
         }
         upload()
         
-    }, [update, user, value])
+    }, [closeEditor, update, user, value])
 
 
   return (
