@@ -7,21 +7,30 @@ import { UserController } from '../_utils/apiController'
 import { useAuth } from '../_hooks/useAuth'
 import { v4 as uuidv4 } from 'uuid'
 import { getS3UploadUrl } from '../_utils/helpers'
+import heic2any from 'heic2any'
 
-function PhotoUploader({closeEditor}: {closeEditor: ()=>void}) {
+function PhotoUploader({isOpen, closeEditor}: {isOpen: boolean, closeEditor: ()=>void}) {
     const {user, update} = useAuth(); 
     const [crop, setCrop] = useState<Crop>()
     const [value, setValue] = useState<Blob>()
     const [objURL, setObjUrl] = useState<string | undefined>(undefined);
-    const imgRef = useRef<HTMLImageElement>(null)
-    // const [croppedUrl, setCroppedUrl] = useState<string | undefined>(undefined);
+    const imgRef = useRef<HTMLImageElement>(null);
+    const modalRef = useRef<HTMLDialogElement>(null);
 
-    const handleChange: ChangeEventHandler<HTMLInputElement> = (e)=>{
+    const handleChange: ChangeEventHandler<HTMLInputElement> = async (e)=>{
         const files = e.currentTarget.files
         if (!files || files.length == 0) return;
         const img = files[0];
-        const url = URL.createObjectURL(img);
-        setObjUrl(url);
+        if (img.type.includes('heic')) {
+            const blob = new Blob([img], {type: img.type});
+            const converted = await heic2any({ blob });
+            const url = URL.createObjectURL(converted as Blob);
+            setObjUrl(url);
+        } else {
+            const url = URL.createObjectURL(img);
+            setObjUrl(url);
+        }
+        
     }
 
     function onImageLoad(e: ChangeEvent<HTMLImageElement>) {
@@ -119,11 +128,20 @@ function PhotoUploader({closeEditor}: {closeEditor: ()=>void}) {
         
     }, [closeEditor, update, user, value])
 
+    useEffect(()=>{
+        if (isOpen) {
+            modalRef.current?.showModal();
+        } else {
+            modalRef.current?.close();
+        }
+    }, [isOpen])
+
 
   return (
-    objURL
+    <dialog ref={modalRef} className='max-w-600 p-2 md:p-6 rounded-xl bg-background2 border-4 border-primary'>
+    {objURL
         ? <>
-            <ReactCrop crop={crop} onChange={(c)=>setCrop(c)} aspect={1} className='w-1/2 min-w-[250px] mx-auto'>
+            <ReactCrop crop={crop} onChange={(c)=>setCrop(c)} aspect={1} className='w-full mx-auto'>
                 <img src={objURL} alt='user photo' onLoad={onImageLoad} width={'100%'} ref={imgRef}/>
             </ReactCrop>
             <button className={ButtonStyles.primary} onClick={onComplete} type='button'>Upload</button>
@@ -137,7 +155,8 @@ function PhotoUploader({closeEditor}: {closeEditor: ()=>void}) {
                 <input type="file" id='uploader' name='uploader' accept='image/jpg, image/png' onChange={handleChange} className='hidden'/>
             </label>
             <button onClick={onCancel} className='flex-1 bg-transparent border-1 border-blue-600 rounded p-2 grid place-items-center'>Cancel</button>
-        </div>
+        </div>}
+    </dialog>
   )
 }
 

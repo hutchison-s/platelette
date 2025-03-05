@@ -10,7 +10,8 @@ export type AuthorInfo = {
     name: string;
     photo?: string;
     sub?: string,
-    email?: string
+    email?: string,
+    bio?: string
   };
 
 export interface RecipePreview {
