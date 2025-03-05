@@ -43,6 +43,8 @@ export function AuthProvider({children}: {children: React.ReactNode}) {
             tokenToUser(id_token).then(user => {
                 if (user) {
                     login(user)
+                } else {
+                    logout();
                 }
             })
         }
