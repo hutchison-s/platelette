@@ -17,7 +17,7 @@ import PhotoUploader from './PhotoUploader'
 
 
 function AccountPage() {
-    const {user, update} = useAuth();
+    const {user, update} = useAuth(); 
     const [isEditing, setIsEditing] = useState(false);
     const [isEditingPhoto, setIsEditingPhoto] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -57,18 +57,18 @@ function AccountPage() {
                 :   <>
                         <div className="relative w-full min-h-8">
                             <p>{errorMessage && errorMessage}</p>
-                            <button onClick={()=>setIsEditing(true)} className='absolute top-1/2 right-0 -translate-y-1/2' aria-label='Edit Profile'>
-                                <Pencil aria-hidden='true' className={isEditing ? 'bg-primary text-background2' : 'bg-transparent text-primary'}/>
+                            <button onClick={()=>setIsEditing(e => !e)} className={'absolute top-1/2 right-0 -translate-y-1/2 p-1 rounded '+(isEditing ? 'bg-primary text-background2' : 'bg-transparent text-primary')} aria-label='Edit Profile'>
+                                <Pencil aria-hidden='true'/>
                             </button>
                         </div>
                         <form onSubmit={handleEdit} onReset={()=>setIsEditing(false)} className='my-2 grid gap-4'>
                             <TextInput rest={{defaultValue: user?.name, disabled: !isEditing}} label='Name' name='name'/>
                             <TextInput rest={{value: user?.email, disabled: true}} label='Email' name='email'/>
-                            <TextAreaInput rest={{defaultValue: user?.bio, disabled: !isEditing}} label='Bio' name='bio'/>
-                            <div className='w-full flex justify-center items-center gap-2'>
+                            <TextAreaInput rest={{defaultValue: user?.bio, disabled: !isEditing}}  textAreaClassName='resize-none' label='Bio' name='bio'/>
+                            {isEditing && <div className='w-full flex justify-center items-center gap-2'>
                                 <button type='submit' className={ButtonStyles.primary+' grow'}>Submit Changes</button>
                                 <button type='reset' className={ButtonStyles.hollow+' grow'}>Cancel</button>
-                            </div>
+                            </div>}
                         </form>
                     </>
         )
@@ -77,14 +77,17 @@ function AccountPage() {
     function ProfilePhoto() {
         return (
             <>
-                <div className="w-full grid place-items-center p-2">
+                <div className="w-full grid place-items-center my-2 relative">
                     <div className='size-24 rounded-full overflow-hidden relative'>
                         {user?.photo 
                             ? <UserPhoto url={user.photo} name={user.name}/> 
                             : <User className='text-primary p-1 border-1 border-primary rounded-full' size={60}/>
                         }
-                        <button onClick={()=>setIsEditingPhoto(true)} className='bg-blue-600 text-background2 grid place-items-center p-1 rounded-full absolute bottom-0 left-1/2 -translate-x-1/2'><Pencil /></button>
+                            
                     </div>
+                    <button onClick={()=>setIsEditingPhoto(true)} className='bg-blue-600 text-background2 grid place-items-center p-1 rounded-full absolute bottom-0 left-1/2 translate-y-1/2 -translate-x-1/2'>
+                                <Pencil />
+                            </button>
                 </div>
                 <PhotoUploader isOpen={isEditingPhoto} closeEditor={()=>setIsEditingPhoto(false)} /> 
             </>
@@ -94,13 +97,13 @@ function AccountPage() {
   return (
     <>
         <AuthCheck>
-        <SectionHeading>Account Information</SectionHeading>
-        <Card className='p-6 max-w-600 mx-auto relative'>
-            
-            <ProfilePhoto />
-            <UserDetails u={user} />
-            <Link className={ButtonStyles.primary+' block w-fit'} href={logoutLink} >Log Out</Link>
-        </Card>
+            <SectionHeading>Account Information</SectionHeading>
+            <Card className='p-6 max-w-600 mx-auto relative'>
+                
+                <ProfilePhoto />
+                <UserDetails u={user} />
+                <Link className={ButtonStyles.primary+' block w-fit mx-auto my-4 mt-8'} href={logoutLink} >Log Out</Link>
+            </Card>
         </AuthCheck>
     </>
   )

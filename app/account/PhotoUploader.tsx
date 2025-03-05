@@ -138,23 +138,27 @@ function PhotoUploader({isOpen, closeEditor}: {isOpen: boolean, closeEditor: ()=
 
 
   return (
-    <dialog ref={modalRef} className='max-w-600 p-2 md:p-6 rounded-xl bg-background2 border-4 border-primary'>
+    <dialog ref={modalRef} className='max-w-600 p-2 py-8 md:p-6 rounded-xl bg-background2 border-4 border-primary min-w-[300px] md:min-w-[600px]'>
     {objURL
         ? <>
             <ReactCrop crop={crop} onChange={(c)=>setCrop(c)} aspect={1} className='w-full mx-auto'>
                 <img src={objURL} alt='user photo' onLoad={onImageLoad} width={'100%'} ref={imgRef}/>
             </ReactCrop>
-            <button className={ButtonStyles.primary} onClick={onComplete} type='button'>Upload</button>
-            <button className={ButtonStyles.hollow} onClick={onCancel} type='button'>Cancel</button>
+            <div className='w-full flex justify-center gap-2'>
+                <button className={ButtonStyles.primary+' grow'} onClick={onComplete} type='button'>Upload</button>
+                <button className={ButtonStyles.hollow+' grow'} onClick={onCancel} type='button'>Cancel</button>
+
+            </div>
+            
         </>
         
         : 
-        <div className='flex w-full gap-2'>
-            <label htmlFor="uploader" className='flex-1 bg-blue-600 text-background2 grid place-items-center p-2 rounded'>
+        <div className='flex w-full justify-center items-center gap-2'>
+            <label htmlFor="uploader" className='flex-1 bg-blue-600 text-background2 grid place-items-center p-2 rounded text-center'>
                 Choose Photo
                 <input type="file" id='uploader' name='uploader' accept='image/jpg, image/png' onChange={handleChange} className='hidden'/>
             </label>
-            <button onClick={onCancel} className='flex-1 bg-transparent border-1 border-blue-600 rounded p-2 grid place-items-center'>Cancel</button>
+            <button onClick={onCancel} className='flex-1 bg-transparent border-1 border-blue-600 rounded p-2 grid place-items-center text-center'>Cancel</button>
         </div>}
     </dialog>
   )
