@@ -2,7 +2,6 @@
 
 export default function DateString({time}: {time: number | string}) {
     const tz = new Intl.DateTimeFormat().resolvedOptions().timeZone;
-    console.log(tz)
     const d = new Date(time);
     const formattedDate = new Intl.DateTimeFormat('en-US', {
          month: 'short',
