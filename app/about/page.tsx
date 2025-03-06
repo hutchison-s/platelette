@@ -1,6 +1,11 @@
+import { Metadata } from "next/types";
 import Card from "../_components/cards/Card";
 import SectionHeading from "../_components/ui/SectionHeading";
 import { BodyText, FeaturedText } from "../_components/ui/Text";
+
+export const metadata: Metadata = {
+  title: "About Platelette.com"
+}
 
 function AboutPage() {
     return (

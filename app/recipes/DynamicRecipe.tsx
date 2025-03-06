@@ -6,6 +6,7 @@ import { Recipe } from '../types';
 import { Loader } from 'lucide-react';
 import { RecipeController } from '../_utils/apiController';
 import { useSearchParams } from 'next/navigation';
+import Head from 'next/head';
 
 function DynamicRecipe() {
     const searchParams = useSearchParams();
@@ -28,9 +29,19 @@ function DynamicRecipe() {
     }, [searchParams])
 
     return (
-        recipe
+        <>
+            <Head>
+                <title>{recipe ? recipe.title : 'Loading Recipe'}</title>
+                <meta name="description" content={recipe ? recipe.description : 'Recipe on Platelette.com'} />
+                <meta name="og:description" content={recipe ? `Recipe by ${recipe.author.name} on Platelette.com` : 'Recipe on Platelette.com'} />
+                <meta name="og:title" content={recipe ? recipe.title : 'Platelette Recipe'} />
+                <meta property='og:image' content={recipe ? recipe.photo : '/logo-red.png'} />
+                
+            </Head>
+        {recipe
             ? <RecipePage recipe={recipe} />
-            : <Loader size={80} className='mx-auto my-6 animate-spin text-primary'/>
+            : <Loader size={80} className='mx-auto my-6 animate-spin text-primary'/>}
+        </>
     )
 }
 
