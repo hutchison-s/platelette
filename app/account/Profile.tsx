@@ -38,7 +38,7 @@ function Profile() {
         }, `/${user?.sub}`).then(res => {
             if (!res) throw new Error('Missing user update response')
             console.log(res);
-            update({name: fd.get('name') as string});
+            update({name: fd.get('name') as string, bio: fd.get('bio') as string});
             setIsSubmitting(false)
             setIsEditing(false);
         }).catch(err => {

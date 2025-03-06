@@ -19,7 +19,7 @@ function RecipePreviewCard({recipe, className=''}: {recipe: RecipePreview, class
             </div>
             <p className="font-body font-light text-foreground text-sm md:text-md" >{recipe.description}</p>
             <div className="text-primary2 text-sm font-light font-body flex gap-2">
-                {recipe.tags.map((tag, idx) => {
+                {recipe.tags?.map((tag, idx) => {
                     return (
                         <span key={idx}>
                             {idx !== 0 && '  |  '}

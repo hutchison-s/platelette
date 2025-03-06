@@ -38,6 +38,16 @@ export function TextInput({label, name, className='', ...rest}: {label: string, 
     )
 }
 
+export function NumberInput({label, name, min = 1, max = 120, step = 1, className='', ...rest}: {label: string, name: string, min?: number, max?: number, step?: number, className?: string, rest?: InputHTMLAttributes<HTMLInputElement>}) {
+    return (
+        <div className={"relative "+className}>
+          <input type="number" name={name} id={name} min={min} max={max} step={step} className="peer border-1 border-slate-500 rounded py-1 pt-6 px-3 w-full text-slate-700" placeholder=" " {...rest.rest}/>
+          <label htmlFor={name} className="absolute transition-all duration-300 text-slate-500 top-1/2 left-3 -translate-y-6 scale-75 origin-top-left peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-slate-500 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600">{label}</label>
+          
+        </div>
+    )
+}
+
 export function TextAreaInput({label, name, className='', textAreaClassName='', ...rest}: {label: string, name: string, className?: string, textAreaClassName?: string, rest?: TextareaHTMLAttributes<HTMLTextAreaElement>}) {
     return (
         <div className={"relative "+className}>

@@ -8,9 +8,11 @@ import { useAuth } from '../_hooks/useAuth'
 import { v4 as uuidv4 } from 'uuid'
 import { getS3UploadUrl } from '../_utils/helpers'
 import heic2any from 'heic2any'
+import { Loader } from 'lucide-react'
 
 function PhotoUploader({isOpen, closeEditor}: {isOpen: boolean, closeEditor: ()=>void}) {
     const {user, update} = useAuth(); 
+    const [isSubmitting, setIsSubmiting] = useState(false)
     const [crop, setCrop] = useState<Crop>()
     const [value, setValue] = useState<Blob>()
     const [objURL, setObjUrl] = useState<string | undefined>(undefined);
@@ -55,11 +57,8 @@ function PhotoUploader({isOpen, closeEditor}: {isOpen: boolean, closeEditor: ()=
         setCrop(crop)
       }
 
-      useEffect(()=>{
-        console.log(crop)
-      }, [crop])
-
       async function onComplete() {
+        setIsSubmiting(true);
         const image = imgRef.current;
         if (!image || !crop) {
             throw new Error('Crop canvas does not exist');
@@ -122,6 +121,7 @@ function PhotoUploader({isOpen, closeEditor}: {isOpen: boolean, closeEditor: ()=
             console.log(value);
             setObjUrl(undefined);
             setValue(undefined);
+            setIsSubmiting(false);
             closeEditor();
         }
         upload()
@@ -149,6 +149,7 @@ function PhotoUploader({isOpen, closeEditor}: {isOpen: boolean, closeEditor: ()=
                 <button className={ButtonStyles.hollow+' grow'} onClick={onCancel} type='button'>Cancel</button>
 
             </div>
+            {isSubmitting && <div className="absolute inset-0 bg-white/50 grid place-items-center z-20 backdrop-blur-xl rounded-xl"><Loader size={80} className="text-primary animate-spin"/></div>}
             
         </>
         
