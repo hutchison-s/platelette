@@ -33,13 +33,28 @@ function RecipeForm() {
         const tags = (fd.get('tags') as string).split(',').map(each => each.replace(/\s/g, ''));
         const y = parseInt(fd.get('yield') as string)
         const slug = titleToSlug(title);
-        const author = {name: user.name, photo: user.photo, sub: user.sub};
+        const author_name = user.name;
+        const author_photo = user.photo;
+        const author_sub = user.sub;
         const uploadURL = await getS3UploadUrl(photo.type, photo.size, id);
         if (!uploadURL) return;
         console.log('url', uploadURL)
         await fetch(uploadURL, {method: 'PUT', body: photo}).catch(err => console.log(err));
 
-        const newRecipe: Partial<Recipe> = { id, yield: y, tags, title, slug, description, photo: photoURL, ingredients: [], instructions: [], author }
+        const newRecipe: Partial<Recipe> = { 
+          id, 
+          yield: y, 
+          tags, 
+          title, 
+          slug, 
+          description, 
+          photo: photoURL, 
+          ingredients: [], 
+          instructions: [], 
+          author_name,
+          author_photo,
+          author_sub 
+        }
 
         for (const k of fd.keys()) {
           const thisKey = fd.get(k) as string;
