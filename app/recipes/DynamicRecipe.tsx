@@ -47,7 +47,7 @@ function DynamicRecipe() {
             <Head>
                 <title>{recipe.title}</title>
                 <meta name="description" content={recipe.description} />
-                <meta name="og:description" content={`Recipe by ${recipe.author.name} on Platelette.com`} />
+                <meta name="og:description" content={`Recipe by ${recipe.author_name} on Platelette.com`} />
                 <meta name="og:title" content={recipe.title} />
                 <meta property='og:image' content={recipe.photo} />
             </Head>

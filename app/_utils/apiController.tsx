@@ -84,6 +84,16 @@ export class RecipeController extends ApiController<Recipe> {
     async getByAuthor(author_id: string) {
         return this.safeGET(`?author_id=${author_id}`);
     }
+    async getPopular(cursor: string | null, limit?: number) {
+        const limitString = limit ? `&limit=${limit}` : '';
+        const cursorString = cursor ? `&cursor=${cursor}` : '';
+        return this.safeGET(`?sort=popular${limitString}${cursorString}`);
+    }
+    async getLatest(cursor: string | null, limit?: number) {
+        const limitString = limit ? `&limit=${limit}` : '';
+        const cursorString = cursor ? `&cursor=${cursor}` : '';
+        return this.safeGET(`?sort=latest${limitString}${cursorString}`);
+    }
 }
 
 

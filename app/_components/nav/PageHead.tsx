@@ -4,8 +4,8 @@ import logo from "@/public/logo.svg";
 import MobileMenu from "./MobileMenu";
 import WebMenu from "./WebMenu";
 import SearchPanel from "./SearchPanel";
-import Initial from "./Initial";
 import { Search } from "lucide-react";
+import Initial from "./Initial";
 
 function PageHead() {
     return (
@@ -23,7 +23,6 @@ function PageHead() {
               <MobileMenu />
               <div className="relative flex gap-4 items-center">
                 <WebMenu />
-                
                 <label htmlFor="searchToggle" className='cursor-pointer text-white' aria-label='Show search bar'><Search size={30} className='border-background2 group-has-[input:checked]:bg-background2 group-has-[input:checked]:text-primary p-1 rounded' aria-hidden='true'/><input type="checkbox" name="searchToggle" id="searchToggle" className='hidden'/></label>
                 <Initial />
               </div>

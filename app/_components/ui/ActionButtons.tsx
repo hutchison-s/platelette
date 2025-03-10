@@ -9,7 +9,7 @@ function ActionButtons() {
     const {user} = useAuth()
   return (
     <>
-        <LinkButton href='#' variant="hollow" className="min-w-32 md:min-w-40 text-center">Browse</LinkButton>
+        <LinkButton href='/browse' variant="hollow" className="min-w-32 md:min-w-40 text-center">Browse</LinkButton>
         {user
             ? <LinkButton href='/account' className="min-w-32 md:min-w-40 text-center">Profile</LinkButton>
             : <LinkButton href={loginLink} className="min-w-32 md:min-w-40 text-center">Log In</LinkButton>

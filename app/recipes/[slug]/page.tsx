@@ -23,7 +23,7 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
         description: r.description,
         openGraph: {
             title: r.title,
-            description: `Recipe by ${r.author.name} on Platelette`,
+            description: `Recipe by ${r.author_name} on Platelette`,
             images: [{
                 url: r.photo,
                 width: 1200,

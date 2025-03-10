@@ -3,7 +3,7 @@ export type fetchStatus = "loading" | "success" | "error"
 export interface ApiResponse<T> {
   items: T[],
   count: number,
-  cursor?: string
+  cursor: string | null
 }
 
 export type AuthorInfo = {
@@ -21,7 +21,9 @@ export interface RecipePreview {
     tags: string[];
     photo: string;
     created: string;
-    author: AuthorInfo;
+    author_name: string,
+    author_photo: string,
+    author_sub: string,
     slug: string,
 }
 

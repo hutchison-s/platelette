@@ -17,7 +17,7 @@ function SearchResults() {
     useEffect(()=>{
         if (status != 'success' || !recipes) return;
         const queryFilter = (each: Recipe)=>{
-            const fullText = [each.description, each.title, each.tags.join(','), each.author.name].join(' ');
+            const fullText = [each.description, each.title, each.tags.join(','), each.author_name].join(' ');
             const queryTest = new RegExp(query || ' ', 'gi');
             return queryTest.test(fullText);
         }

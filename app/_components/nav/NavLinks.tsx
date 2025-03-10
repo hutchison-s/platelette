@@ -1,4 +1,4 @@
-import { Home, Info, PlusCircle } from "lucide-react";
+import { Home, Info, Globe } from "lucide-react";
 import Link from "next/link";
 
 function NavLinks({isOpen=true}: {isOpen?: boolean}) {
@@ -12,10 +12,11 @@ function NavLinks({isOpen=true}: {isOpen?: boolean}) {
                 <span className="sm:hidden"><Info aria-hidden="true"/></span>
                 <span className="hidden sm:block">About</span>
             </Link>
-            <Link href={'/create'} tabIndex={isOpen ? 0 : -1} aria-label="Create Page">
-                <span className="sm:hidden"><PlusCircle aria-hidden="true"/></span>
-                <span className="hidden sm:block">Create</span>
+            <Link href={'/browse'} tabIndex={isOpen ? 0 : -1} aria-label="Browse All Recipes">
+                <span className="sm:hidden"><Globe aria-hidden="true"/></span>
+                <span className="hidden sm:block">Browse</span>
             </Link>
+            
         </>
     )
 }
