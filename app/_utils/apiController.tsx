@@ -1,59 +1,107 @@
 import { ApiResponse, AuthorInfo, Recipe } from "../types";
+import { fetchWithAuth } from "./auth";
 
 export class ApiController<T> {
     protected BASE: string;
     protected includeCredentials: boolean;
+    protected bearer: string;
+    protected refreshtokens: ()=>Promise<string | null>;
 
-    constructor(baseURL: string, credentialed: boolean = false) {
+    constructor(baseURL: string, credentialed: boolean = false, bearer: string = '', refreshTokens: ()=>Promise<string | null>) {
         this.BASE = baseURL;
-        this.includeCredentials = credentialed
+        this.includeCredentials = credentialed;
+        this.bearer = bearer;
+        this.refreshtokens = refreshTokens;
     }
     protected async safeGET(endpoint: string) : Promise<ApiResponse<T> | null> {
-        return await fetch(this.BASE+endpoint, {credentials: this.includeCredentials ? 'include' : undefined})
+        const opts: RequestInit = {
+            method: 'GET',
+            credentials: this.includeCredentials ? 'include' : undefined,
+            headers: {
+                "Accept": 'application/json',
+                "Authorization": `Bearer ${this.bearer}`
+            }
+        }
+        if (this.includeCredentials) {
+            return await fetchWithAuth(this.BASE+endpoint, opts, this.bearer, this.refreshtokens)
             .then(res => res.json())
             .catch(err => {
                 console.error(err);
                 return null;
             });
+        } else {
+            return await fetch(this.BASE+endpoint, opts)
+            .then(res => res.json())
+            .catch(err => {
+                console.error(err);
+                return null;
+            });
+        }
+        
     }
     protected async safePOST(endpoint: string, payload: Partial<T>) : Promise<Response | null> {
-        return await fetch(this.BASE+endpoint, {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(payload)
-            })
+        const opts: RequestInit = {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+                "Authorization": `Bearer ${this.bearer}`
+            },
+            body: JSON.stringify(payload)
+        }
+        return await fetchWithAuth(this.BASE+endpoint, opts, this.bearer, this.refreshtokens)
             .catch(err => {
                 console.error(err);
                 return null;
             });
     }
     protected async safePUT(endpoint: string, payload: T) : Promise<Response | null> {
-        return await fetch(this.BASE+endpoint, {
-                method: 'PUT',
-                credentials: 'include',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(payload)
-            })
+        const opts: RequestInit = {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+                "Authorization": `Bearer ${this.bearer}`
+            },
+            body: JSON.stringify(payload)
+        }
+        return await fetchWithAuth(this.BASE+endpoint, opts, this.bearer, this.refreshtokens)
             .catch(err => {
                 console.error(err);
                 return null;
             });
     }
+
     async getAll() {
         return this.safeGET('');
     }
     async getOne(id: string): Promise<T | null> {
-        return fetch(`${this.BASE}/${id}`, {credentials: this.includeCredentials ? 'include' : undefined})
-        .then(res => res.json())
-        .catch(err => {
-            console.error(err);
-            return null;
-        });
+        const endpoint = '/'+id;
+        const opts: RequestInit = {
+            method: 'GET',
+            credentials: this.includeCredentials ? 'include' : undefined,
+            headers: {
+                "Accept": 'application/json',
+                "Authorization": `Bearer ${this.bearer}`
+            }
+        }
+        if (this.includeCredentials) {
+            return await fetchWithAuth(this.BASE+endpoint, opts, this.bearer, this.refreshtokens)
+            .then(res => res.json())
+            .catch(err => {
+                console.error(err);
+                return null;
+            });
+        } else {
+            return await fetch(this.BASE+endpoint, opts)
+            .then(res => res.json())
+            .catch(err => {
+                console.error(err);
+                return null;
+            });
+        }
     }
     async getQuery(params: Record<string, string | number>) {
         if (Object.keys(params).length == 0) {
@@ -74,8 +122,8 @@ export class ApiController<T> {
 }
 
 export class RecipeController extends ApiController<Recipe> {
-    constructor() {
-        super('https://api.platelette.com/recipes');
+    constructor(access_token: string = '', refresh: ()=>Promise<string | null>) {
+        super('https://api.platelette.com/recipes', access_token !== '', access_token, refresh);
     }
 
     async getBySlug(slug: string) {
@@ -98,7 +146,7 @@ export class RecipeController extends ApiController<Recipe> {
 
 
 export class UserController extends ApiController<AuthorInfo> {
-    constructor() {
-        super('https://api.platelette.com/accounts', true);
+    constructor(access_token: string = '', refresh: ()=>Promise<string | null>) {
+        super('https://api.platelette.com/accounts', access_token !== '', access_token, refresh);
     }
 }

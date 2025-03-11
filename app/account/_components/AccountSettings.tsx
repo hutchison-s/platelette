@@ -3,7 +3,6 @@
 import React, { FormEventHandler, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Loader, Pencil, User } from 'lucide-react'
-import { UserController } from '@/app/_utils/apiController'
 import Card from '@/app/_components/cards/Card'
 import { ButtonStyles } from '@/app/_components/ui/Buttons'
 import { TextInput, TextAreaInput } from '@/app/_components/ui/Inputs'
@@ -13,9 +12,11 @@ import { logoutLink } from '@/app/_utils/constants'
 import { AuthorInfo } from '@/app/types'
 import PhotoUploader from '../_components/PhotoUploader'
 import { useAuth } from '@/app/_hooks/useAuth'
+import { useApiController } from '@/app/_hooks/useApiController'
 
 function Profile() {
-    const {user, update} = useAuth(); 
+    const {user, update} = useAuth();
+    const {Users} = useApiController(); 
     const [isEditing, setIsEditing] = useState(false);
     const [isEditingPhoto, setIsEditingPhoto] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,9 +29,8 @@ function Profile() {
     const handleEdit: FormEventHandler<HTMLFormElement> = (e)=>{
         setIsSubmitting(true);
         e.preventDefault();
-        const controller = new UserController();
         const fd = new FormData(e.currentTarget);
-        controller.update({
+        Users.update({
             ...user,
             name: fd.get('name') as string,
             bio: fd.get('bio') as string

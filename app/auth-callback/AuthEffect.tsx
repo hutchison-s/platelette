@@ -12,18 +12,19 @@ function AuthEffect() {
     const {login} = useAuth();
     const [status, setStatus] = useState<fetchStatus>('loading');
     const [errorMessage, setErrorMessage] = useState('')
-    const [profile, setProfile] = useState<AuthorInfo | null>(null)
+    const [profile, setProfile] = useState<AuthorInfo | null>(null);
+    const [access, setAccess] = useState<string | null>(null)
 
     useEffect(()=>{
         if (errorMessage) setStatus('error')
     }, [errorMessage])
 
     useEffect(()=>{
-        if (profile) {
-            login(profile);
+        if (profile && access) {
+            login({user_info: profile, access_token: access});
             router.push('/')
         }
-    }, [profile, router, login])
+    }, [profile, access, router, login])
     
 
     useEffect(()=>{
@@ -35,12 +36,14 @@ function AuthEffect() {
                 const token = await codeForToken(c);
                 if (!token || !token.id_token) {
                     setErrorMessage('Invalid authentication token');
+                    return;
                 }
-                const profileResponse = await tokenToUser(token.id_token);
+                const profileResponse = await tokenToUser(token.id_token, token.access_token);
                 if (!profileResponse) {
                     setErrorMessage('User does not exist');
                 }
-                setProfile(profileResponse as AuthorInfo)            
+                setProfile(profileResponse as AuthorInfo)
+                setAccess(token.access_token)            
                 setStatus('success');
             } catch (error) {
                 console.error(error);

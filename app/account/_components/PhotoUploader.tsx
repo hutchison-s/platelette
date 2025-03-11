@@ -3,15 +3,16 @@ import React, { ChangeEvent, ChangeEventHandler, useEffect, useRef, useState } f
 import ReactCrop, { centerCrop, makeAspectCrop, type Crop } from 'react-image-crop'
 import 'react-image-crop/dist/ReactCrop.css'
 import { ButtonStyles } from '../../_components/ui/Buttons'
-import { UserController } from '../../_utils/apiController'
 import { useAuth } from '../../_hooks/useAuth'
 import { v4 as uuidv4 } from 'uuid'
 import { getS3UploadUrl } from '../../_utils/helpers'
 import heic2any from 'heic2any'
 import { Loader } from 'lucide-react'
+import { useApiController } from '@/app/_hooks/useApiController'
 
 function PhotoUploader({isOpen, closeEditor}: {isOpen: boolean, closeEditor: ()=>void}) {
-    const {user, update} = useAuth(); 
+    const {user, update} = useAuth();
+    const {Users} = useApiController(); 
     const [isSubmitting, setIsSubmiting] = useState(false)
     const [crop, setCrop] = useState<Crop>()
     const [value, setValue] = useState<Blob>()
@@ -112,8 +113,7 @@ function PhotoUploader({isOpen, closeEditor}: {isOpen: boolean, closeEditor: ()=
             const link = await getS3UploadUrl(value.type, value.size, photoId);
             await fetch(link, {method: 'PUT', body: value});
             const photoURL = 'https://platelette-images.s3.us-east-1.amazonaws.com/'+photoId
-            const controller = new UserController();
-            await controller.update({
+            await Users.update({
                 ...user!,
                 photo: photoURL
             }, '/'+user!.sub)
@@ -126,7 +126,7 @@ function PhotoUploader({isOpen, closeEditor}: {isOpen: boolean, closeEditor: ()=
         }
         upload()
         
-    }, [closeEditor, update, user, value])
+    }, [closeEditor, update, user, value, Users])
 
     useEffect(()=>{
         if (isOpen) {

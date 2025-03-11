@@ -4,21 +4,21 @@ import React, { useEffect, useState } from 'react'
 import RecipePage from './[slug]/RecipePage';
 import { Recipe } from '../types';
 import { Loader } from 'lucide-react';
-import { RecipeController } from '../_utils/apiController';
 import { useSearchParams } from 'next/navigation';
 import Head from 'next/head';
 import NotFound from '../not-found';
+import { useApiController } from '../_hooks/useApiController';
 
 function DynamicRecipe() {
     const searchParams = useSearchParams();
     const [recipe, setRecipe] = useState<Recipe>();
     const [error, setError] = useState<string>();
+    const {Recipes} = useApiController();
     
 
     useEffect(()=>{
         const getRecipe = (slug: string) => {
-            const controller = new RecipeController();
-            controller.getBySlug(slug).then(r => {
+            Recipes.getBySlug(slug).then(r => {
                 if (!r || r?.count == 0) {
                     throw new Error('Invalid URL')
                 } else {
@@ -33,7 +33,7 @@ function DynamicRecipe() {
         const slug = searchParams.get('name');
         if (!slug) throw new Error('Invalid URL')
         getRecipe(slug)
-    }, [searchParams])
+    }, [searchParams, Recipes])
 
     if (error) {
         return <NotFound />

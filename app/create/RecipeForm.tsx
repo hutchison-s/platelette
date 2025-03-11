@@ -9,13 +9,14 @@ import { getS3UploadUrl, titleToSlug } from "../_utils/helpers";
 import { MeasurementUnit, Recipe } from "../types";
 import { v4 as uuidV4 } from "uuid";
 import { useAuth } from "../_hooks/useAuth";
-import { RecipeController } from "../_utils/apiController";
 import { useRouter } from "next/navigation";
 import { Loader } from "lucide-react";
+import { useApiController } from "../_hooks/useApiController";
 
 
 function RecipeForm() {
   const {user} = useAuth();
+  const {Recipes} = useApiController();
   const router = useRouter();
   const [isSubmitting, setIsSubmiting] = useState(false)
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -74,8 +75,7 @@ function RecipeForm() {
             newRecipe.ingredients![idx] = {...newRecipe.ingredients![idx], name: thisKey }
           }
         }
-        const controller = new RecipeController();
-        await controller.create(newRecipe)
+        await Recipes.create(newRecipe)
           .then(res => {
             if (!res || !res.ok) {
               throw new Error("Error creating recipe")

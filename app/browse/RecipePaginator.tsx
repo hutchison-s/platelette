@@ -1,12 +1,12 @@
 'use client'
 
 import RecipePreviewCard from '@/app/_components/cards/RecipePreviewCard';
-import { RecipeController } from '@/app/_utils/apiController';
 import { Recipe } from '@/app/types';
 import React, { useEffect, useState } from 'react';
 import { ButtonStyles } from '../_components/ui/Buttons';
 import SectionHeading from '../_components/ui/SectionHeading';
 import CheckboxTabs from '../_components/ui/CheckboxTabs';
+import { useApiController } from '../_hooks/useApiController';
 
 
 
@@ -14,6 +14,7 @@ const RecipePaginator: React.FC = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [cursor, setCursor] = useState<string | null>(null);
     const [sort, setSort] = useState(0);
+    const {Recipes} = useApiController();
 
     
 
@@ -21,9 +22,9 @@ const RecipePaginator: React.FC = () => {
         const fetchRecipes = async (cursor: string | null) => {
             let response;
             if (sort == 0) {
-                response = await new RecipeController().getPopular(cursor, 3);
+                response = await Recipes.getPopular(cursor, 3);
             } else {
-                response = await new RecipeController().getLatest(cursor, 3);
+                response = await Recipes.getLatest(cursor, 3);
             }
             if (response) {
                 const {items, cursor} = response;
@@ -37,15 +38,15 @@ const RecipePaginator: React.FC = () => {
         setCursor(null);
         setRecipes([]);
         fetchRecipes(null)
-    }, [sort])
+    }, [sort, Recipes])
 
     const loadMore = async (cursor: string | null) => {
         
             let response;
             if (sort == 0) {
-                response = await new RecipeController().getPopular(cursor, 3);
+                response = await Recipes.getPopular(cursor, 3);
             } else {
-                response = await new RecipeController().getLatest(cursor, 3);
+                response = await Recipes.getLatest(cursor, 3);
             }
             if (response) {
                 const {items, cursor} = response;
