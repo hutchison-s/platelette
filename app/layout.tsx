@@ -22,11 +22,16 @@ const bodytext = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Platelette",
-  description: "Share your plate",
+  title: "Platelette.com",
+  description: "Discover, share, and create recipes with ease on Platelette.com",
   icons: {
     icon: '/logo-red.png',
     shortcut: '/logo-red.png'
+  },
+  openGraph: {
+    title: "Platelette.com",
+    description: "Discover, share, and create recipes with ease on Platelette.com",
+    images: {url: '/logo-red.png', width: 1200, height: 600}
   }
 };
 
