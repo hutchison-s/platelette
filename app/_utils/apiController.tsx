@@ -119,6 +119,24 @@ export class ApiController<T> {
     async update(payload: T, endpoint?: string) {
         return this.safePUT(endpoint || '', payload);
     }
+    async deleteOne(id: string) {
+        const endpoint = '/'+id;
+        const opts: RequestInit = {
+            method: 'DELETE',
+            credentials: this.includeCredentials ? 'include' : undefined,
+            headers: {
+                "Accept": 'application/json',
+                "Authorization": `Bearer ${this.bearer}`
+            }
+        }
+        return await fetchWithAuth(this.BASE+endpoint, opts, this.bearer, this.refreshtokens)
+        .then(res => res.json())
+        .catch(err => {
+            console.error(err);
+            return null;
+        });
+
+    }
 }
 
 export class RecipeController extends ApiController<Recipe> {
@@ -149,4 +167,54 @@ export class UserController extends ApiController<AuthorInfo> {
     constructor(access_token: string = '', refresh: ()=>Promise<string | null>) {
         super('https://api.platelette.com/accounts', access_token !== '', access_token, refresh);
     }
+    async likeRecipe(user_id: string, recipe_id: string): Promise<Response | null> {
+        const endpoint = `/${user_id}/likes?recipe_id=${recipe_id}`
+        const opts: RequestInit = {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                "Accept": 'application/json',
+                "Authorization": `Bearer ${this.bearer}`
+            }        }
+        return await fetchWithAuth(this.BASE+endpoint, opts, this.bearer, this.refreshtokens)
+            .catch(err => {
+                console.error(err);
+                return null;
+            });
+    }
+    async unlikeRecipe(user_id: string, recipe_id: string): Promise<Response | null> {
+        const endpoint = `/${user_id}/likes?recipe_id=${recipe_id}`
+        const opts: RequestInit = {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: {
+                "Accept": 'application/json',
+                "Authorization": `Bearer ${this.bearer}`
+            },
+        }
+        return await fetchWithAuth(this.BASE+endpoint, opts, this.bearer, this.refreshtokens)
+            .catch(err => {
+                console.error(err);
+                return null;
+            });
+    }
+    async getLikedRecipes(user_id: string): Promise<ApiResponse<Recipe> | null> {
+        const endpoint = `/${user_id}/likes`;
+        const opts: RequestInit = {
+            method: 'GET',
+            credentials: this.includeCredentials ? 'include' : undefined,
+            headers: {
+                "Accept": 'application/json',
+                "Authorization": `Bearer ${this.bearer}`
+            }
+        }
+        return await fetch(this.BASE+endpoint, opts)
+            .then(res => res.json())
+            .catch(err => {
+                console.error(err);
+                return null;
+            });
+        
+    }
+
 }

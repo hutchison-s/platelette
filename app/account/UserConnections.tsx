@@ -1,5 +1,5 @@
 import React from 'react'
-import SectionHeading from '../../_components/ui/SectionHeading'
+import SectionHeading from '../_components/ui/SectionHeading'
 
 function UserConnections() {
   return (

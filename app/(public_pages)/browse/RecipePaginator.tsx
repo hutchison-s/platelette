@@ -1,12 +1,13 @@
 'use client'
 
 import RecipePreviewCard from '@/app/_components/cards/RecipePreviewCard';
+import { ButtonStyles } from '@/app/_components/ui/Buttons';
+import CheckboxTabs from '@/app/_components/ui/CheckboxTabs';
+import SectionHeading from '@/app/_components/ui/SectionHeading';
+import { useApiController } from '@/app/_hooks/useApiController';
 import { Recipe } from '@/app/types';
 import React, { useEffect, useState } from 'react';
-import { ButtonStyles } from '../_components/ui/Buttons';
-import SectionHeading from '../_components/ui/SectionHeading';
-import CheckboxTabs from '../_components/ui/CheckboxTabs';
-import { useApiController } from '../_hooks/useApiController';
+
 
 
 
@@ -22,9 +23,9 @@ const RecipePaginator: React.FC = () => {
         const fetchRecipes = async (cursor: string | null) => {
             let response;
             if (sort == 0) {
-                response = await Recipes.getPopular(cursor, 3);
+                response = await Recipes().getPopular(cursor, 3);
             } else {
-                response = await Recipes.getLatest(cursor, 3);
+                response = await Recipes().getLatest(cursor, 3);
             }
             if (response) {
                 const {items, cursor} = response;
@@ -44,9 +45,9 @@ const RecipePaginator: React.FC = () => {
         
             let response;
             if (sort == 0) {
-                response = await Recipes.getPopular(cursor, 3);
+                response = await Recipes().getPopular(cursor, 3);
             } else {
-                response = await Recipes.getLatest(cursor, 3);
+                response = await Recipes().getLatest(cursor, 3);
             }
             if (response) {
                 const {items, cursor} = response;

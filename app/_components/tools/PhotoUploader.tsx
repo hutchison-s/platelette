@@ -113,7 +113,7 @@ function PhotoUploader({isOpen, closeEditor}: {isOpen: boolean, closeEditor: ()=
             const link = await getS3UploadUrl(value.type, value.size, photoId);
             await fetch(link, {method: 'PUT', body: value});
             const photoURL = 'https://platelette-images.s3.us-east-1.amazonaws.com/'+photoId
-            await Users.update({
+            await Users().update({
                 ...user!,
                 photo: photoURL
             }, '/'+user!.sub)

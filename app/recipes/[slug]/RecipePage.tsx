@@ -11,7 +11,7 @@ export default function RecipePage({recipe}: {recipe: Recipe}) {
                 <RecipePreviewCard recipe={{...recipe} as RecipePreview} className="lg:h-fit"/>
                 
                 <Card className="text-foreground">
-                    <RecipeButtons />
+                    <RecipeButtons recipe_id={recipe.id} />
                     {recipe.yield && <p className="mb-2 text-center italic">{recipe.yield} servings</p>}
                     <p className="font-display text-xl font-light">Ingredients</p>
                     <div className="indent-4 pt-2 pb-8">

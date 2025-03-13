@@ -1,8 +1,8 @@
 'use client'
 import React, { useEffect } from 'react'
-import { useAuth } from '../_hooks/useAuth'
 import { useRouter } from 'next/navigation';
 import { Loader } from 'lucide-react';
+import { useAuth } from '@/app/_hooks/useAuth';
 
 function LogoutPage() {
     const {logout} = useAuth();

@@ -20,7 +20,7 @@ function UserRecipes({profile}: {profile: AuthorInfo}) {
   useEffect(() => {
     const getRecipes = async () => {
       try {
-        const response = await Recipes.getByAuthor(profile.sub!);
+        const response = await Recipes().getByAuthor(profile.sub!);
         setItems(response?.items || []);
         setCount(response?.count || 0);
         setStatus('success');

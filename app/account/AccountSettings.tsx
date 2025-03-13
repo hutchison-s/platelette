@@ -10,9 +10,9 @@ import SectionHeading from '@/app/_components/ui/SectionHeading'
 import UserPhoto from '@/app/_components/ui/UserPhoto'
 import { logoutLink } from '@/app/_utils/constants'
 import { AuthorInfo } from '@/app/types'
-import PhotoUploader from '../_components/PhotoUploader'
 import { useAuth } from '@/app/_hooks/useAuth'
 import { useApiController } from '@/app/_hooks/useApiController'
+import PhotoUploader from '@/app/_components/tools/PhotoUploader'
 
 function Profile() {
     const {user, update} = useAuth();
@@ -30,7 +30,7 @@ function Profile() {
         setIsSubmitting(true);
         e.preventDefault();
         const fd = new FormData(e.currentTarget);
-        Users.update({
+        Users().update({
             ...user,
             name: fd.get('name') as string,
             bio: fd.get('bio') as string

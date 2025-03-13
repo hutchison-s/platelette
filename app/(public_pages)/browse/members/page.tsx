@@ -2,7 +2,7 @@
 
 import UserCard from '@/app/_components/cards/UserCard';
 import { useApiController } from '@/app/_hooks/useApiController';
-import UserRecipes from '@/app/account/_components/UserRecipes';
+import UserRecipes from '@/app/_components/UserRecipes';
 import NotFound from '@/app/not-found';
 import { AuthorInfo, fetchStatus } from '@/app/types';
 import { Loader } from 'lucide-react';
@@ -19,7 +19,7 @@ function MemberPublicPage() {
     useEffect(()=>{
         setStatus('loading');
         const getProfile = async(id: string)=>{
-            const user = await Users.getOne(id);
+            const user = await Users().getOne(id);
             if (user) {
                 setProfile({...user, email: undefined})
                 setStatus('success')

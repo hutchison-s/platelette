@@ -20,17 +20,19 @@ export interface RecipePreview {
     description: string;
     tags: string[];
     photo: string;
-    created: string;
+    created: number;
     author_name: string,
     author_photo: string,
     author_sub: string,
     slug: string,
+    likes: number
 }
 
 export interface Recipe extends RecipePreview {
     ingredients: Ingredient[],
     instructions: string[],
-    yield?: number
+    yield?: number,
+    
   };
 
   export enum MeasurementUnit {

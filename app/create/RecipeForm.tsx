@@ -75,7 +75,7 @@ function RecipeForm() {
             newRecipe.ingredients![idx] = {...newRecipe.ingredients![idx], name: thisKey }
           }
         }
-        await Recipes.create(newRecipe)
+        await Recipes().create(newRecipe)
           .then(res => {
             if (!res || !res.ok) {
               throw new Error("Error creating recipe")

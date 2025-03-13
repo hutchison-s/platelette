@@ -3,26 +3,13 @@ import Card from "./Card";
 import { RecipePreview } from "@/app/types";
 import UserPhoto from "../ui/UserPhoto";
 import DateString from "../ui/DateString";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, Heart } from "lucide-react";
+import TagLinks from "./TagLinks";
 
 
 function RecipePreviewCard({recipe, className=''}: {recipe: RecipePreview, className?: string}) {
 
-    function TagLinks({tags}: {tags: string[]}) {
-        return (
-            <div className="text-primary2 text-sm font-light font-body flex gap-2">
-                {tags?.map((tag, idx) => {
-                    return (
-                        <span key={idx}>
-                            {idx !== 0 && '  |  '}
-                            <Link href={`/search?query=${tag}`}>{tag}</Link>
-                        </span>
-                        
-                    )
-                })}
-            </div>
-        )
-    }
+    
 
     function TruncatedDescription({description}: {description: string}) {
         const maxLength = 140;
@@ -50,7 +37,13 @@ function RecipePreviewCard({recipe, className=''}: {recipe: RecipePreview, class
             </div>
             <TruncatedDescription description={recipe.description}/>
             <TagLinks tags={recipe.tags || []}/>
-            <p className="text-right text-faded text-xs">{recipe.author_name} - <DateString time={recipe.created} /></p>
+            <div className="flex w-full justify-between mt-2">
+                <p className="flex gap-2 text-xs text-faded items-center">
+                    <Heart size={16}/>
+                    {recipe.likes}
+                </p>
+                <p className="text-right text-faded text-xs">{recipe.author_name} - <DateString time={recipe.created} /></p>
+            </div>
         </Card>
     )
 }

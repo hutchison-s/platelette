@@ -1,10 +1,10 @@
 'use client'
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
-import { useAuth } from '../_hooks/useAuth';
-import { AuthorInfo, fetchStatus } from '../types';
 import { Loader } from 'lucide-react';
-import { codeForToken, tokenToUser } from '../_utils/auth';
+import { useAuth } from '@/app/_hooks/useAuth';
+import { codeForToken, tokenToUser } from '@/app/_utils/auth';
+import { fetchStatus, AuthorInfo } from '@/app/types';
 
 function AuthEffect() {
     const query = useSearchParams()

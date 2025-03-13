@@ -18,7 +18,7 @@ function DynamicRecipe() {
 
     useEffect(()=>{
         const getRecipe = (slug: string) => {
-            Recipes.getBySlug(slug).then(r => {
+            Recipes().getBySlug(slug).then(r => {
                 if (!r || r?.count == 0) {
                     throw new Error('Invalid URL')
                 } else {

@@ -1,7 +1,7 @@
 import { Suspense } from "react"
-import SectionHeading from "../_components/ui/SectionHeading"
 import AuthEffect from "./AuthEffect"
 import { Loader } from "lucide-react"
+import SectionHeading from "@/app/_components/ui/SectionHeading"
 
 function AuthPage() {
     

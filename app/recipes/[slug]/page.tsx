@@ -11,7 +11,6 @@ export async function generateStaticParams() {
 
 async function getRecipe(slug: string): Promise<Recipe> {
     const response = await fetch('https://api.platelette.com/recipes?slug='+slug).then(res => res.json())
-    console.log(response);
     return response.items[0]
 }
 

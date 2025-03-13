@@ -1,7 +1,7 @@
+import Card from '@/app/_components/cards/Card'
+import { LinkButton } from '@/app/_components/ui/Buttons'
+import { loginLink } from '@/app/_utils/constants'
 import React from 'react'
-import { LinkButton } from '../_components/ui/Buttons'
-import Card from '../_components/cards/Card'
-import { loginLink } from '../_utils/constants'
 
 function LoginPage() {
   return (

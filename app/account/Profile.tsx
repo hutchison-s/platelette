@@ -3,10 +3,10 @@
 import React, { useState } from 'react'
 import { useAuth } from '../_hooks/useAuth';
 import CheckboxTabs from '../_components/ui/CheckboxTabs';
-import UserRecipes from './_components/UserRecipes';
-import AccountSettings from './_components/AccountSettings';
-import Favorites from './_components/Favorites';
-import UserConnections from './_components/UserConnections';
+import AccountSettings from './AccountSettings';
+import Favorites from './Favorites';
+import UserConnections from './UserConnections';
+import RecipeManager from './RecipeManager';
 
 
 const pages = ['Recipes', 'Favorites', 'Connect', 'Settings'];
@@ -24,7 +24,7 @@ function Profile() {
     }
   return (
     <>
-        <h2 className='font-heading font-bold my-4 text-2xl md:text-5xl text-transparent bg-gradient-to-tl from-primary to-foreground bg-clip-text'>
+        <h2 className='font-heading font-light my-4 md:my-8 text-2xl md:text-5xl text-transparent bg-gradient-to-tl from-primary to-foreground bg-clip-text'>
             Welcome, {user.name}!
         </h2>
         
@@ -36,7 +36,7 @@ function Profile() {
                 setIdx={setPage}
                 labels={pages}
             />
-            {page == 0 && <UserRecipes profile={user} />}
+            {page == 0 && <RecipeManager />}
             {page == 1 && <Favorites />}
             {page == 2 && <UserConnections />}
             {page == 3 && <AccountSettings />}  
@@ -45,7 +45,7 @@ function Profile() {
         {/* Desktop */}
         <section className='hidden md:grid gap-4 justify-center grid-cols-1 lg:grid-cols-2'>
             <div className="rounded-lg border-secondary/50 p-4 border-1">
-                <UserRecipes profile={user}/>
+                <RecipeManager />
             </div>
             <div className="rounded-lg border-secondary/50 p-4 border-1">
                 <Favorites />

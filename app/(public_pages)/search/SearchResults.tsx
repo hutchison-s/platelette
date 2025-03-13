@@ -1,13 +1,14 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import useQuery from "../_hooks/useQuery";
-import { Recipe } from "../types";
-import RecipePreviewCard from "../_components/cards/RecipePreviewCard";
-import Card from "../_components/cards/Card";
 import { Loader } from "lucide-react";
-import { LinkButton } from "../_components/ui/Buttons";
-import useFetch from "../_hooks/useFetch";
+import Card from "@/app/_components/cards/Card";
+import RecipePreviewCard from "@/app/_components/cards/RecipePreviewCard";
+import { LinkButton } from "@/app/_components/ui/Buttons";
+import useFetch from "@/app/_hooks/useFetch";
+import useQuery from "@/app/_hooks/useQuery";
+import { Recipe } from "@/app/types";
+
 
 function SearchResults() {
     const [query, status] = useQuery();
