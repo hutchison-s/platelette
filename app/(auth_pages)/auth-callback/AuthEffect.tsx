@@ -42,6 +42,16 @@ function AuthEffect() {
                 if (!profileResponse) {
                     setErrorMessage('User does not exist');
                 }
+                await fetch('https://api.platelette.com/analytics/auth-callback', {
+                    method: 'POST',
+                    headers: {
+                        "Authorization": `Bearer ${token.access_token}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({})
+                }).catch(err => {
+                    console.error(err);
+                })
                 setProfile(profileResponse as AuthorInfo)
                 setAccess(token.access_token)            
                 setStatus('success');
