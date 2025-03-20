@@ -44,6 +44,7 @@ function AuthEffect() {
                 }
                 await fetch('https://api.platelette.com/analytics/auth-callback', {
                     method: 'POST',
+                    mode: 'cors',
                     headers: {
                         "Authorization": `Bearer ${token.access_token}`,
                         "Content-Type": "application/json"
