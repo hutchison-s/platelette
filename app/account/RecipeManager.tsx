@@ -3,7 +3,7 @@
 import { useApiController } from '@/app/_hooks/useApiController'
 import { useAuth } from '@/app/_hooks/useAuth';
 import { fetchStatus, Recipe } from '@/app/types';
-import { Loader } from 'lucide-react';
+import { Loader, PlusCircle } from 'lucide-react';
 
 import React, { useEffect, useState } from 'react'
 import { LinkButton } from '../_components/ui/Buttons';
@@ -32,8 +32,8 @@ function RecipeManager() {
     }, [user, Recipes])
   return (
     <>
-    <SectionHeading size='3xl'>Your Recipes</SectionHeading>
-    <LinkButton href='/create' className='block w-fit mx-auto my-2 text-center'>New Recipe</LinkButton>
+    <SectionHeading size='3xl' className='flex justify-between items-center'><span>Your Recipes</span><LinkButton href='/create' className='flex gap-2 items-center w-fit text-center'>New Recipe <PlusCircle strokeWidth={1} /></LinkButton></SectionHeading>
+    
     {status == 'loading'
         ?   <Loader size={80} className='text-primary animate-spin'/>
         :   <div className="grid gap-2 w-full">

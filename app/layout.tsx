@@ -44,6 +44,8 @@ export default function RootLayout({
     <html lang="en" className="bg-primary">
       <head>
         <link rel="icon" href="/logo-red.png" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4003624543865831"
+     crossOrigin="anonymous"></script>
       </head>
       <body
         className={`${bodytext.variable} ${heading.variable} ${display.variable} antialiased overflow-x-hidden w-screen min-h-screen flex flex-col bg-background`}

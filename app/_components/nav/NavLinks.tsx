@@ -1,7 +1,10 @@
-import { Home, Info, Globe } from "lucide-react";
+'use client'
+import { useAuth } from "@/app/_hooks/useAuth";
+import { Home, Info, Globe, PlusCircle } from "lucide-react";
 import Link from "next/link";
 
 function NavLinks({isOpen=true}: {isOpen?: boolean}) {
+    const {user} = useAuth();
     return (
         <>
             <Link href={'/'} tabIndex={isOpen ? 0 : -1} aria-label="Home Page">
@@ -16,6 +19,10 @@ function NavLinks({isOpen=true}: {isOpen?: boolean}) {
                 <span className="sm:hidden"><Globe aria-hidden="true"/></span>
                 <span className="hidden sm:block">Browse</span>
             </Link>
+            {user && <Link href={'/create'} tabIndex={isOpen ? 0 : -1} aria-label="New Recipe">
+                <span className="sm:hidden"><PlusCircle aria-hidden="true"/></span>
+                <span className="hidden sm:block">Create</span>
+            </Link>}
             
         </>
     )
