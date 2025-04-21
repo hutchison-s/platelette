@@ -64,7 +64,7 @@ function GenerateRecipe({r, photo, modify, save}: {r: Partial<Recipe>, photo?: s
                     <div>
                         <p className='font-body font-bold text-secondary text-2xl mb-4'>Ingredients</p>
                         <ul className='list-disc leading-loose ml-4 px-4'>
-                            {r.ingredients?.map((ing, idx) => <li key={idx} className='py-1'>{ing.qty} {ing.measure}{ing.qty > 1 && 's'} {ing.name}</li>)}
+                            {r.ingredients?.map((ing, idx) => <li key={idx} className='py-1'>{ing.qty} {ing.measure} {ing.name}</li>)}
                         </ul>
                     </div>
                     <div className="w-full px-2 py-4 gap-2">
@@ -180,7 +180,7 @@ function AICreate() {
                 <Loader size={120} className='text-primary animate-spin'/>
             </div>
         </dialog>
-        <div className={`${!generated.title && !isLoading ? 'h-[30vh]' : 'h-0'}`}></div>
+        <div className={`${!generated.title && !isLoading ? 'h-[20vh]' : 'h-0'}`}></div>
         <form onSubmit={handleSubmit} className='w-full flex justify-center flex-col gap-2 items-center md:flex-row my-4 mx-auto '>
             <TextInput label='I want a recipe for...' name='prompt' className='w-full max-w-600'/>
             <button className={ButtonStyles.primary+' block'}>Generate</button>

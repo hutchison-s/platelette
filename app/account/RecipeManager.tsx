@@ -32,7 +32,12 @@ function RecipeManager() {
     }, [user, Recipes])
   return (
     <>
-    <SectionHeading size='3xl' className='flex justify-between items-center'><span>Your Recipes</span><LinkButton href='/create' className='flex gap-2 items-center w-fit text-center'>New Recipe <PlusCircle strokeWidth={1} /></LinkButton></SectionHeading>
+    <SectionHeading size='3xl' className='flex justify-between items-center'>
+        <span>Your Recipes</span>
+        <LinkButton href='/create' className='flex gap-2 items-center w-fit text-center'>
+            <span className='hidden md:inline'>New Recipe </span><PlusCircle strokeWidth={1} />
+        </LinkButton>
+    </SectionHeading>
     
     {status == 'loading'
         ?   <Loader size={80} className='text-primary animate-spin'/>
