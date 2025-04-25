@@ -52,7 +52,7 @@ export default function RootLayout({
       >
         <AuthProvider>
           <PageHead />
-          <main className="grow bg-background w-full bg-gradient-to-t from-secondary/5 to-background to-50%">
+          <main className="grow bg-background w-full bg-gradient-to-t from-secondary/5 to-background to-50% max-w-screen overflow-x-hidden">
             {children}
           </main>
         </AuthProvider>
