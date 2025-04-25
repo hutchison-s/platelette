@@ -5,11 +5,16 @@ import { BodyText, FeaturedText } from "./_components/ui/Text";
 import LatestRecipes from "./_components/LatestRecipes";
 import TopRecipes from "./_components/TopRecipes";
 import PageWrapper from "./_components/ui/PageWrapper";
+import { Suspense } from "react";
+import HeroLoading from "./_components/ui/HeroLoading";
 
 export default function Home() {
   return (
     <>
-      <Hero />
+        <Suspense fallback={<HeroLoading />}>
+          <Hero />
+        </Suspense>
+        
         <PageWrapper>
           <SectionHeading>Popular Recipes</SectionHeading>
           <TopRecipes limit={5} />
