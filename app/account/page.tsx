@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import AuthCheck from "../_hooks/AuthCheck";
 import Profile from "./Profile";
+import PageWrapper from "../_components/ui/PageWrapper";
 
 export const metadata: Metadata = {
     title: "My Recipes - Platelette.com",
@@ -11,7 +12,10 @@ export default async function AccountPage() {
     return (
         <>
             <AuthCheck>
-                <Profile />
+                <PageWrapper>
+                    <Profile />
+                </PageWrapper>
+                
             </AuthCheck>
         </>
     )

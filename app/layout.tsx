@@ -48,11 +48,11 @@ export default function RootLayout({
      crossOrigin="anonymous"></script>
       </head>
       <body
-        className={`${bodytext.variable} ${heading.variable} ${display.variable} antialiased overflow-x-hidden w-screen min-h-screen flex flex-col bg-background`}
+        className={`${bodytext.variable} ${heading.variable} ${display.variable} antialiased overflow-x-hidden w-screen min-h-screen bg-background`} 
       >
         <AuthProvider>
           <PageHead />
-          <main className="grow bg-background p-std w-full sm:px-8 lg:max-w-[1600px] mx-auto">
+          <main className="grow bg-background w-full bg-gradient-to-t from-secondary/5 to-background to-50%">
             {children}
           </main>
         </AuthProvider>

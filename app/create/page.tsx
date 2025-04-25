@@ -2,6 +2,7 @@ import { Metadata } from "next/types";
 import SectionHeading from "../_components/ui/SectionHeading";
 import AuthCheck from "../_hooks/AuthCheck";
 import AICreate from "./AICreate";
+import PageWrapper from "../_components/ui/PageWrapper";
 // import RecipeForm from "./RecipeForm";
 
 export const metadata: Metadata = {
@@ -12,15 +13,13 @@ function CreatePage() {
   
 
   return (
-    <div>
-        <SectionHeading className="max-w-1000 mx-auto">New Recipe</SectionHeading>
+    <PageWrapper isNarrow>
+        <SectionHeading>New Recipe</SectionHeading>
         <AuthCheck>
-          <div className="max-w-1000 mx-auto">
               {/* <RecipeForm /> */}
             <AICreate />
-          </div>
         </AuthCheck>
-    </div>
+    </PageWrapper>
   )
 }
 

@@ -23,9 +23,9 @@ const RecipePaginator: React.FC = () => {
         const fetchRecipes = async (cursor: string | null) => {
             let response;
             if (sort == 0) {
-                response = await Recipes().getPopular(cursor, 3);
+                response = await Recipes().getPopular(cursor, 6);
             } else {
-                response = await Recipes().getLatest(cursor, 3);
+                response = await Recipes().getLatest(cursor, 6);
             }
             if (response) {
                 const {items, cursor} = response;
@@ -45,9 +45,9 @@ const RecipePaginator: React.FC = () => {
         
             let response;
             if (sort == 0) {
-                response = await Recipes().getPopular(cursor, 3);
+                response = await Recipes().getPopular(cursor, 6);
             } else {
-                response = await Recipes().getLatest(cursor, 3);
+                response = await Recipes().getLatest(cursor, 6);
             }
             if (response) {
                 const {items, cursor} = response;

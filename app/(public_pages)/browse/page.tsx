@@ -10,8 +10,7 @@ export const metadata: Metadata = {
 function BrowseRecipesPage() {
   return (
     <>
-      
-      <RecipePaginator />
+        <RecipePaginator />
     </>
   )
 }

@@ -45,21 +45,23 @@ function GenerateRecipe({r, photo, modify, save}: {r: Partial<Recipe>, photo?: s
     if (!r) return null;
     return (
         <section className='grid grid-cols-1 md:grid-rows-2 md:grid-cols-[3fr_2fr] gap-2'>
-            <Card className='px-2 order-1 md:col-start-1 md:row-start-1'>
+            <article className='w-full min-h-40 rounded-xtra bg-background2 p-std shadow-lg px-2 order-1 md:col-start-1 md:row-start-1'>
                 <p className='font-heading font-black text-foreground text-3xl py-2'>{r.title}</p>
+                <p className='font-body text-secondary text-md py-2'>{r.description}</p>
+                <p className='font-body text-primary text-sm flex gap-2 py-2'>{r.tags?.join(' | ')}</p>
                 <p className='font-body py-2'>{r.yield} Servings</p>
                     {photo 
                         ? <img src={photo} alt={r.title} width={'100%'} className='w-full aspect-[16/9] rounded-std mx-auto object-cover'/> 
                         : <div className='w-full aspect-[16/9] max-w-600 mx-auto bg-stone-400 animate-pulse'></div>}
-            </Card>
-            <Card className='px-2 order-3 grid gap-1 md:col-start-1 md:row-start-2'>
+            </article>
+            <article className='w-full min-h-40 rounded-xtra bg-background2 p-std shadow-lg px-2 order-3 flex flex-col justify-start gap-1 md:col-start-1 md:row-start-2'>
                 <p className='font-body font-bold text-secondary text-2xl'>Instructions</p>
                 <ol className='leading-loose ml-4 list-decimal px-4'>
                     {r.instructions?.map((m, idx) => <li key={idx} className='py-1'>{m}</li>)}
                 </ol>
 
-            </Card>
-            <Card className='p-2 flex flex-col justify-between order-2 md:col-start-2 md:row-start-1 md:row-span-2'>
+            </article>
+            <article className='w-full min-h-40 rounded-xtra bg-background2 shadow-lg p-2 flex flex-col justify-between order-2 md:col-start-2 md:row-start-1 md:row-span-2'>
                     
                     <div>
                         <p className='font-body font-bold text-secondary text-2xl mb-4'>Ingredients</p>
@@ -78,7 +80,7 @@ function GenerateRecipe({r, photo, modify, save}: {r: Partial<Recipe>, photo?: s
                         </form>
                     </div>
 
-                </Card>
+                </article>
         </section>
     )
 }
@@ -101,7 +103,7 @@ function AICreate() {
         const target = e.currentTarget as HTMLFormElement;
         const prompt = target.prompt?.value;
         if (!prompt) return;
-        await fetch('https://api.platelette.com/ai', {method: 'POST', headers: {'Authorization': `Bearer ${access}`, 'Content-Type': 'application/json', 'Accept': 'application/json'}, body: JSON.stringify({prompt})})
+        const text = fetch('https://api.platelette.com/ai', {method: 'POST', headers: {'Authorization': `Bearer ${access}`, 'Content-Type': 'application/json', 'Accept': 'application/json'}, body: JSON.stringify({prompt})})
             .then(res => res.json())
             .then(json => {
                 setGenerated({...json.recipe});
@@ -109,14 +111,23 @@ function AICreate() {
             })
             .catch(err => console.log(err))
             .finally(()=>setIsLoading(false))
-        await fetch('https://api.platelette.com/ai/photo', {method: 'POST', headers: {'Authorization': `Bearer ${access}`, 'Content-Type': 'application/json', 'Accept': 'application/json'}, body: JSON.stringify({prompt})})
+        const img = fetch('https://api.platelette.com/ai/photo', {method: 'POST', headers: {'Authorization': `Bearer ${access}`, 'Content-Type': 'application/json', 'Accept': 'application/json'}, body: JSON.stringify({prompt})})
         .then(res => res.json())
         .then(json => {
             const blob = base64ToBlob(json.image);
             const url = URL.createObjectURL(blob);
             setPhoto(url)
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+            setPhoto('https://platelette-images.s3.us-east-1.amazonaws.com/placeholder.png');
+        })
+        const promises = await Promise.all([text, img]);
+        if (!promises || promises.length < 2) {
+            setIsLoading(false);
+            return;
+        }
+        setIsLoading(false);
         target.reset();
     }
 
@@ -159,6 +170,7 @@ function AICreate() {
         const uploadURL = await getS3UploadUrl(blob.type, blob.size, id);
         const slug = titleToSlug(generated.title || 'New Recipe')
         if (!uploadURL) return;
+        const tags = generated.tags || [];
         await fetch(uploadURL, {method: 'PUT', body: blob}).catch(err => console.log(err));
         await Recipes().create({
             ...generated,
@@ -168,7 +180,7 @@ function AICreate() {
             author_name: user!.name,
             author_photo: user!.photo,
             author_sub: user!.sub,
-            tags: ['AI Generated']
+            tags: ['AI Generated', ...tags],
         })
         router.push('/account')
     }
