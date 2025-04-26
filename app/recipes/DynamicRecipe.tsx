@@ -5,9 +5,9 @@ import RecipePage from './[slug]/RecipePage';
 import { Recipe } from '../types';
 import { Loader } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
-import Head from 'next/head';
 import NotFound from '../not-found';
 import { useApiController } from '../_hooks/useApiController';
+import {Helmet} from 'react-helmet';
 
 function DynamicRecipe() {
     const searchParams = useSearchParams();
@@ -44,13 +44,13 @@ function DynamicRecipe() {
 
     return (
         <>
-            <Head>
+            <Helmet>
                 <title>{recipe.title}</title>
                 <meta name="description" content={recipe.description} />
                 <meta name="og:description" content={`Recipe by ${recipe.author_name} on Platelette.com`} />
                 <meta name="og:title" content={recipe.title} />
                 <meta property='og:image' content={recipe.photo} />
-            </Head>
+            </Helmet>
             <RecipePage recipe={recipe} />
         </>
     )

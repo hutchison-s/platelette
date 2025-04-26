@@ -20,22 +20,22 @@ import ActionButtons from './ActionButtons';
 // }
 
 const plates = [
-    { id: 1, left: 62, speed: 1.2, size: 1.2 },
-    { id: 4, left: 22, speed: 0.9, size: 1.1 },
-    { id: 5, left: 5, speed: 1.6, size: 1.4 },
-    { id: 7, left: -2, speed: 1, size: 1 },
-    { id: 8, left: 15, speed: 1.5, size: 1.5 },
-    { id: 9, left: 65, speed: 1.2, size: 1 },
-    { id: 10, left: 30, speed: 1.3, size: 1.2 },
-    { id: 12, left: 68, speed: 1.25, size: 0.9 },
-    { id: 13, left: 18, speed: 0.95, size: 0.8 },
-    { id: 14, left: 3, speed: 0.9, size: 0.9 },
-    { id: 15, left: 55, speed: 1, size: 1 },
-    { id: 16, left: 30, speed: 1.1, size: 0.9 },
-    { id: 17, left: 72, speed: 1.3, size: 1.2 },
-    { id: 18, left: 40, speed: 1.4, size: 1.5 },
-    { id: 19, left: 20, speed: 1.6, size: 1.3 },
-    { id: 20, left: 0, speed: 0.8, size: 0.7 },
+    { id: 1, left: 62, top: '90vh', speed: 1.2, size: 1.2 },
+    { id: 4, left: 22, top: '95vh', speed: 0.5, size: 1.1 },
+    { id: 5, left: 5, top: '120vh', speed: 1.8, size: 1.4 },
+    { id: 7, left: -2, top: '92vh', speed: 1, size: 1 },
+    { id: 8, left: 15, top: '105vh', speed: 2.5, size: 1.5 },
+    { id: 9, left: 65, top: '130vh', speed: 1.2, size: 1 },
+    { id: 10, left: 30, top: '92vh', speed: 1.3, size: 1.2 },
+    { id: 12, left: 68, top: '98vh', speed: 2.25, size: 0.9 },
+    { id: 13, left: 18, top: '110vh', speed: 0.65, size: 0.8 },
+    { id: 14, left: 3, top: '130vh', speed: 0.9, size: 0.9 },
+    { id: 15, left: 55, top: '90vh', speed: 1, size: 1 },
+    { id: 16, left: 30, top: '95vh', speed: 2.7, size: 0.9 },
+    { id: 17, left: 72, top: '112vh', speed: 1.3, size: 1.2 },
+    { id: 18, left: 40, top: '98vh', speed: 2.4, size: 1.5 },
+    { id: 19, left: 20, top: '105vh', speed: 3.6, size: 1.3 },
+    { id: 20, left: 0, top: '120vh', speed: 0.8, size: 0.7 },
 
   ];
   
@@ -46,14 +46,14 @@ const plates = [
 
   function MotionPlate({
     left,
+    top,
     speed,
-    size,
-    offset = 0
-  }: {
+    size
+    }: {
     left: number;
+    top: string;
     speed: number;
     size: number;
-    offset?: number;
   }) {
 
   
@@ -61,13 +61,13 @@ const plates = [
       <motion.div
         whileInView={{translateY: '-200vh', transition: { duration: 2 / speed, ease: 'easeInOut' }}}
         initial={{ translateY: '0vh' }}
-        viewport={{ once: true, amount: 0.5 }}
+        viewport={{ once: true, amount: 0.2 }}
         className="absolute rounded-full bg-slate-50 shadow-[0_8px_26px_4px_#0000001a] z-10"
         style={{
           width: `clamp(80px, ${size * 45}vw, 500px)`,
           height: `clamp(80px, ${size * 45}vw, 500px)`,
           left: `${left}%`,
-          top: `calc(90vh - ${offset}px)`
+          top: top
         }}
       >
         <div className="absolute w-5/6 h-5/6 bg-slate-50 rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[-4px_10px_8px_0px_#00000005_inset,_4px_-8px_8px_0px_#00000003,_-4px_10px_12px_0px_#ffffffcc,_4px_-10px_6px_0px_#ffffffcc_inset,_-2px_4px_6px_0px_#ffffffff]">
@@ -103,6 +103,7 @@ const plates = [
   
 
   function Hero() {
+
   
     return (
       <>
@@ -110,9 +111,9 @@ const plates = [
           <MotionPlate
             key={plate.id}
             left={plate.left}
+            top={plate.top}
             speed={plate.speed}
             size={plate.size}
-            offset={plate.speed * 50}
           />
         ))}
       <section
