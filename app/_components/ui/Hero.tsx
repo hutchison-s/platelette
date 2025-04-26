@@ -116,7 +116,7 @@ const plates = [
           />
         ))}
       <section
-        className="relative w-full h-screen bg-gradient-to-b from-secondary/15 to-background overflow-hidden"
+        className="relative w-full h-screen -mt-8 md:-mt-0 bg-gradient-to-b from-secondary/15 to-background overflow-hidden"
         style={{ perspective: '100px' }}
       >
         
