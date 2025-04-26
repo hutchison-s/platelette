@@ -1,17 +1,17 @@
 'use client'
 
 import React, { FormEvent, useState } from "react";
-import { IngredientInput, InstructionInput, NumberInput, TextAreaInput, TextInput } from "../_components/ui/Inputs";
+import { IngredientInput, InstructionInput, NumberInput, TextAreaInput, TextInput } from "../../_components/ui/Inputs";
 import InputList from "./InputList";
-import PhotoInputWithPreview from "../_components/ui/PhotoInput";
-import { Button } from "../_components/ui/Buttons";
-import { getS3UploadUrl, titleToSlug } from "../_utils/helpers";
-import { MeasurementUnit, Recipe } from "../types";
+import PhotoInputWithPreview from "../../_components/ui/PhotoInput";
+import { Button } from "../../_components/ui/Buttons";
+import { getS3UploadUrl, titleToSlug } from "../../_utils/helpers";
+import { MeasurementUnit, Recipe } from "../../types";
 import { v4 as uuidV4 } from "uuid";
-import { useAuth } from "../_hooks/useAuth";
+import { useAuth } from "../../_hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { Loader } from "lucide-react";
-import { useApiController } from "../_hooks/useApiController";
+import { useApiController } from "../../_hooks/useApiController";
 
 
 function RecipeForm() {

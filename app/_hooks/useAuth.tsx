@@ -30,10 +30,12 @@ export function AuthProvider({children}: {children: React.ReactNode}) {
     const login = ({user_info, access_token}: AuthInfo) => {
         setUser(user_info);
         setAccess(access_token);
+        localStorage.setItem('user_info', JSON.stringify(user_info));
     }
     const logout = ()=>{
-        setUser(undefined)
-        setAccess(undefined)
+        setUser(undefined);
+        setAccess(undefined);
+        localStorage.removeItem('user_info');
     }
     const update = (u: Partial<AuthorInfo>) => {
         if (!user) return;
@@ -61,14 +63,18 @@ export function AuthProvider({children}: {children: React.ReactNode}) {
     }
 
     useEffect(() => {
+        if (localStorage.getItem('user_info')) {
+            const user_info = JSON.parse(localStorage.getItem('user_info') || '{}') as AuthorInfo;
+            login({user_info, access_token: ''});
+        }
         const scheduleRefresh = async () => {
             const tokens = await refreshAuthTokens();
             if (!tokens || !tokens.id_token || !tokens.access_token) {
-                return;
+                return logout();
             }
             const user_info = await tokenToUser(tokens.id_token, tokens.access_token);
             if (!user_info) {
-                return;
+                return logout();
             }
             login({ user_info, access_token: tokens.access_token });
     

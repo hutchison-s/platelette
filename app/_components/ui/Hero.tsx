@@ -32,7 +32,7 @@ const plates = [
     { id: 14, left: 3, speed: 0.9, size: 0.9 },
     { id: 15, left: 55, speed: 1, size: 1 },
     { id: 16, left: 30, speed: 1.1, size: 0.9 },
-    { id: 17, left: 75, speed: 1.3, size: 1.2 },
+    { id: 17, left: 72, speed: 1.3, size: 1.2 },
     { id: 18, left: 40, speed: 1.4, size: 1.5 },
     { id: 19, left: 20, speed: 1.6, size: 1.3 },
     { id: 20, left: 0, speed: 0.8, size: 0.7 },
@@ -61,7 +61,7 @@ const plates = [
       <motion.div
         whileInView={{translateY: '-200vh', transition: { duration: 2 / speed, ease: 'easeInOut' }}}
         initial={{ translateY: '0vh' }}
-        viewport={{ once: true, amount: 0.6 }}
+        viewport={{ once: true, amount: 0.5 }}
         className="absolute rounded-full bg-slate-50 shadow-[0_8px_26px_4px_#0000001a] z-10"
         style={{
           width: `clamp(80px, ${size * 45}vw, 500px)`,
@@ -112,6 +112,7 @@ const plates = [
             left={plate.left}
             speed={plate.speed}
             size={plate.size}
+            offset={plate.speed * 50}
           />
         ))}
       <section
@@ -133,7 +134,7 @@ const plates = [
         </div>
         
       </section>
-      <FeaturedText className="text-center text-xl z-10 max-w-screen-md mx-auto pb-12 px-4">
+      <FeaturedText className="text-center text-xl z-10 max-w-[900px] mx-auto pb-12 px-4">
           Explore a world of culinary creativity at your fingertips. Share your favorite recipes, discover dishes from food lovers around the globe, and connect over the meals that bring us together.
         </FeaturedText>
       </>

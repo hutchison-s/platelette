@@ -41,18 +41,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-primary">
+    <html lang="en" className="bg-primary max-w-screen">
       <head>
         <link rel="icon" href="/logo-red.png" />
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4003624543865831"
      crossOrigin="anonymous"></script>
       </head>
       <body
-        className={`${bodytext.variable} ${heading.variable} ${display.variable} antialiased overflow-x-hidden w-screen min-h-screen bg-background`} 
+        className={`${bodytext.variable} ${heading.variable} ${display.variable} antialiased overflow-x-hidden w-screen max-w-screen bg-background`} 
       >
         <AuthProvider>
           <PageHead />
-          <main className="grow bg-background w-full bg-gradient-to-t from-secondary/5 to-background to-50% max-w-screen overflow-x-hidden">
+          <main className="relative grow bg-background bg-gradient-to-t from-secondary/5 to-background to-50% w-screen overflow-x-hidden">
             {children}
           </main>
         </AuthProvider>

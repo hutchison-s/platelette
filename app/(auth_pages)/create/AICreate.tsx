@@ -1,15 +1,15 @@
 'use client'
 
 import React, { FormEventHandler, useRef, useState } from 'react'
-import { Recipe } from '../types'
-import { TextInput } from '../_components/ui/Inputs';
-import { useAuth } from '../_hooks/useAuth';
-import { ButtonStyles } from '../_components/ui/Buttons';
-import Card from '../_components/cards/Card';
+import { Recipe } from '../../types'
+import { TextInput } from '../../_components/ui/Inputs';
+import { useAuth } from '../../_hooks/useAuth';
+import { ButtonStyles } from '../../_components/ui/Buttons';
+import Card from '../../_components/cards/Card';
 import { Loader, Share2, Split } from 'lucide-react';
-import { useApiController } from '../_hooks/useApiController';
+import { useApiController } from '../../_hooks/useApiController';
 import { v4 as uuidv4 } from 'uuid';
-import { getS3UploadUrl, titleToSlug } from '../_utils/helpers';
+import { getS3UploadUrl, titleToSlug } from '../../_utils/helpers';
 import { useRouter } from 'next/navigation';
 
 function GenerateSkeleton() {

@@ -1,8 +1,8 @@
 import { Metadata } from "next/types";
-import SectionHeading from "../_components/ui/SectionHeading";
-import AuthCheck from "../_hooks/AuthCheck";
+import SectionHeading from "../../_components/ui/SectionHeading";
+import AuthCheck from "../../_hooks/AuthCheck";
 import AICreate from "./AICreate";
-import PageWrapper from "../_components/ui/PageWrapper";
+import PageWrapper from "../../_components/ui/PageWrapper";
 // import RecipeForm from "./RecipeForm";
 
 export const metadata: Metadata = {

@@ -6,9 +6,9 @@ import { fetchStatus, Recipe } from '@/app/types';
 import { Loader, PlusCircle } from 'lucide-react';
 
 import React, { useEffect, useState } from 'react'
-import { LinkButton } from '../_components/ui/Buttons';
+import { LinkButton } from '../../_components/ui/Buttons';
 import SmallRecipeCard from './SmallRecipeCard';
-import SectionHeading from '../_components/ui/SectionHeading';
+import SectionHeading from '../../_components/ui/SectionHeading';
 
 
 

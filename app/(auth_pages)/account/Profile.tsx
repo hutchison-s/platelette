@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
-import { useAuth } from '../_hooks/useAuth';
-import CheckboxTabs from '../_components/ui/CheckboxTabs';
+import { useAuth } from '../../_hooks/useAuth';
+import CheckboxTabs from '../../_components/ui/CheckboxTabs';
 import AccountSettings from './AccountSettings';
 import Favorites from './Favorites';
 import UserConnections from './UserConnections';
@@ -44,17 +44,22 @@ function Profile() {
 
         {/* Desktop */}
         <section className='hidden md:grid gap-4 justify-center grid-cols-1 lg:grid-cols-2'>
-            <div className="rounded-lg border-secondary/50 p-4 border-1">
-                <RecipeManager />
+            <div className="flex flex-col gap-4">
+                <div className="rounded-lg border-secondary/50 p-4 border-1">
+                    <RecipeManager />
+                </div>
+                <div className="rounded-lg border-secondary/50 p-4 border-1">
+                    <Favorites />
+                </div>
             </div>
-            <div className="rounded-lg border-secondary/50 p-4 border-1">
-                <Favorites />
-            </div>
-            <div className="rounded-lg border-secondary/50 p-4 border-1">
-                <UserConnections />
-            </div>
-            <div className="rounded-lg border-secondary/50 p-4 border-1">
-                <AccountSettings />
+            <div className="flex flex-col gap-4">
+                <div className="rounded-lg border-secondary/50 p-4 border-1">
+                    <AccountSettings />
+                </div>
+                <div className="rounded-lg border-secondary/50 p-4 border-1">
+                    <UserConnections />
+                </div>
+                
             </div>
         </section>        
         

@@ -1,9 +1,9 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import SectionHeading from '../_components/ui/SectionHeading'
-import { useAuth } from '../_hooks/useAuth';
-import { AuthorInfo } from '../types';
-import UserCard from '../_components/cards/UserCard';
+import SectionHeading from '../../_components/ui/SectionHeading'
+import { useAuth } from '../../_hooks/useAuth';
+import { AuthorInfo } from '../../types';
+import UserCard from '../../_components/cards/UserCard';
 
 function UserConnections() {
 
