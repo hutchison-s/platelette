@@ -28,10 +28,10 @@ const units = [
   ];
   
 
-export function TextInput({label, name, className='', ...rest}: {label: string, name: string, className?: string, rest?: InputHTMLAttributes<HTMLInputElement>}) {
+export function TextInput({label, name, className='', defaultValue, ...rest}: {label: string, name: string, className?: string, defaultValue?: string, rest?: InputHTMLAttributes<HTMLInputElement>}) {
     return (
         <div className={"relative "+className}>
-          <input type="text" name={name} id={name} className="peer border-1 border-slate-500 rounded py-1 pt-6 px-3 w-full text-slate-700" placeholder=" " {...rest.rest}/>
+          <input type="text" name={name} id={name} defaultValue={defaultValue || ''} className="peer border-1 border-slate-500 rounded py-1 pt-6 px-3 w-full text-slate-700" placeholder=" " {...rest.rest}/>
           <label htmlFor={name} className="absolute transition-all duration-300 text-slate-500 top-1/2 left-3 -translate-y-6 scale-75 origin-top-left peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-slate-500 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600">{label}</label>
           
         </div>
@@ -48,10 +48,10 @@ export function NumberInput({label, name, min = 1, max = 120, step = 1, classNam
     )
 }
 
-export function TextAreaInput({label, name, className='', textAreaClassName='', ...rest}: {label: string, name: string, className?: string, textAreaClassName?: string, rest?: TextareaHTMLAttributes<HTMLTextAreaElement>}) {
+export function TextAreaInput({label, name, className='', defaultValue, textAreaClassName='', ...rest}: {label: string, name: string, className?: string, defaultValue?: string, textAreaClassName?: string, rest?: TextareaHTMLAttributes<HTMLTextAreaElement>}) {
     return (
         <div className={"relative "+className}>
-          <textarea name={name} id={name} className={"peer border-1 border-slate-500 rounded py-1 pt-6 px-3 w-full text-slate-700 "+textAreaClassName} placeholder=" " {...rest.rest} />
+          <textarea name={name} id={name} className={"peer border-1 border-slate-500 rounded py-1 pt-6 px-3 w-full text-slate-700 "+textAreaClassName} placeholder=" " {...rest.rest} defaultValue={defaultValue || ''}></textarea>
           <label htmlFor={name} className="absolute transition-all duration-300 text-slate-500 top-1 left-3 translate-y-0 scale-75 origin-top-left peer-placeholder-shown:translate-y-2 peer-placeholder-shown:text-slate-500 peer-placeholder-shown:scale-100 peer-focus:translate-y-0 peer-focus:scale-75 peer-focus:text-blue-600">{label}</label>
           
         </div>
@@ -60,19 +60,19 @@ export function TextAreaInput({label, name, className='', textAreaClassName='', 
 
 
 
-export function IngredientInput({index, className=''}: {index: number, className?: string}) {
+export function IngredientInput({index, className='', defaultValue}: {index: number, className?: string, defaultValue?: {qty: number, measure: string, name: string}}) {
     return (
         <div className={"flex gap-2 items-center "+className}>
-            <TextInput label="Qty" name={`qty-${index}`} className="w-24" rest={{required: true, title: 'Enter a valid number (e.g. 1.5, 3/4, 12)'}}/>
-            <SelectInput label="Measure" name={`measure-${index}`} options={units} required className="h-full" rest={{title: 'Select a measurement unit or "Piece" for counting the whole ingredient'}} />
-            <TextInput label="Ingredient Name" name={`ingredient_name-${index}`} className="grow"/>
+            <TextInput label="Qty" name={`qty-${index}`} defaultValue={String(defaultValue?.qty) || ''} className="w-24" rest={{required: true, title: 'Enter a valid number (e.g. 1.5, 3/4, 12)'}}/>
+            <SelectInput label="Measure" defaultValue={defaultValue?.measure || undefined} name={`measure-${index}`} options={units} required className="h-full" rest={{title: 'Select a measurement unit or "Piece" for counting the whole ingredient'}} />
+            <TextInput label="Ingredient Name" name={`ingredient_name-${index}`} defaultValue={defaultValue?.name || ''} className="grow"/>
         </div>
     )
 }
 
-export function InstructionInput({index, className=''}: {index: number, className?: string}) {
+export function InstructionInput({index, className='', defaultValue}: {index: number, className?: string, defaultValue?: string}) {
     return (
-        <TextAreaInput label={`Step ${index+1}`} name={`step-${index}`} className={"w-full mx-auto max-w-600 "+className} textAreaClassName="resize-none" rest={{rows: 2}} />
+        <TextAreaInput label={`Step ${index+1}`} name={`step-${index}`} defaultValue={defaultValue || ''} className={"w-full mx-auto max-w-600 "+className} textAreaClassName="resize-none" rest={{rows: 2}} />
     )
 }
 

@@ -2,13 +2,14 @@
 
 import React, { useState } from 'react'
 
-function InputList<propsType extends object>({ label, Component, componentProps, className }: { 
+function InputList<propsType extends object>({ label, Component, componentProps, className, initial }: { 
   label: string; 
   Component: React.FC<propsType & {index: number}>, 
   componentProps?: propsType,
-  className?: string 
+  className?: string,
+  initial?: React.ReactNode[] 
 }) {
-    const [inputs, setInputs] = useState<React.ReactNode[]>([<Component key={0} index={0} {...(componentProps as propsType)} />])
+    const [inputs, setInputs] = useState<React.ReactNode[]>(initial ? initial : [<Component key={0} index={0} {...(componentProps as propsType)} />])
 
     const addComp = () => {
         setInputs(prev => [...prev, <Component key={prev.length} index={prev.length} {...(componentProps as propsType)} />])

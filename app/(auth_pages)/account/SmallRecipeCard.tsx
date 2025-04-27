@@ -1,12 +1,13 @@
 "use client"
 
-import { Heart, Pencil, Trash } from "lucide-react";
+import { Heart, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Card from "../../_components/cards/Card";
 import { useApiController } from "../../_hooks/useApiController";
 import { Recipe } from "../../types";
 import Link from "next/link";
 import TagLinks from "../../_components/cards/TagLinks";
+import RecipeEdit from "./RecipeEdit";
 
 export default function SmallRecipeCard({r}: {r: Recipe}) {
     const {Recipes} = useApiController();
@@ -45,9 +46,7 @@ export default function SmallRecipeCard({r}: {r: Recipe}) {
                 <TagLinks tags={r.tags || []} />
             </div>
             <div className='rounded-std flex gap-1 flex-col justify-evenly'>
-                <button disabled className="size-full px-2 md:px-4 grid place-items-center disabled:cursor-not-allowed disabled:grayscale disabled:opacity-30 border-1 border-blue-600 text-blue-600 rounded-std hover:bg-blue-600 hover:text-background2">
-                    <Pencil />
-                </button>
+                <RecipeEdit recipeId={r.id} />
                 <button 
                     onClick={handleDelete}
                     className="size-full px-2 md:px-4 grid place-items-center border-1 border-primary text-primary rounded-std hover:bg-primary hover:text-background2 disabled:cursor-not-allowed disabled:grayscale disabled:opacity-30">

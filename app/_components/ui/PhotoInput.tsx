@@ -3,8 +3,8 @@
 import { RefreshCcw } from "lucide-react";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 
-function PhotoInputWithPreview({name, className}: {name: string, className?: string}) {
-    const [url, setUrl] = useState<string | undefined>()
+function PhotoInputWithPreview({name, className, initial}: {name: string, className?: string, initial?: string}) {
+    const [url, setUrl] = useState<string | undefined>(initial);
     const [file, setFile] = useState<File | undefined>()
     const inputRef = useRef<HTMLInputElement>(null)
 
@@ -12,8 +12,6 @@ function PhotoInputWithPreview({name, className}: {name: string, className?: str
         if (file) {
             const obj = URL.createObjectURL(file);
             setUrl(obj);
-        } else {
-            setUrl(undefined)
         }
     }, [file])
 

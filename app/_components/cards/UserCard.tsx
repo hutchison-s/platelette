@@ -7,16 +7,18 @@ import FollowButton from '../tools/FollowButton'
 
 function UserCard({profile}: {profile: AuthorInfo}) {
   return (
-    <Card className='p-2 flex gap-4 md:gap-8 md:py-6 md:px-10 items-center justify-center max-w-800 mx-auto'>
-            <div className='-mt-1 rounded-full overflow-hidden w-25 md:w-40 max-w-40 object-cover aspect-square border-1 border-background2 outline outline-4 outline-primary'>
+    <Card className='p-2 flex gap-2 md:gap-4 md:py-6 md:px-6 justify-start items-start max-w-800 mx-auto'>
+            <div className='-mt-1 rounded-full overflow-hidden w-20 md:w-30 max-w-30 object-cover aspect-square border-1 border-background2 outline outline-4 outline-primary'>
                 <UserPhoto name={profile.name} url={profile.photo}/>
             </div>
-            <div className='flex flex-col justify-between gap-2 h-full min-h-[120px] min-w-[180px]'>
-                <div className="grid gap-2">
-                    <h2 className='font-heading font-bold text-secondary text-2xl md:text-5xl'>{profile.name}</h2>
-                    <BodyText className='text-sm md:text-lg'>{profile.bio}</BodyText>
+            <div className='flex flex-col grow justify-between gap-2 h-full min-h-[120px] min-w-[180px]'>
+                <div className="grid gap-1">
+                    <h2 className='font-heading font-bold text-secondary text-xl md:text-2xl'>{profile.name}</h2>
+                    <BodyText className='text-sm md:text-lg leading-normal'>{profile.bio}</BodyText>
                 </div>
-                <FollowButton target_user_id={profile.sub} />
+                <div className="w-full flex justify-end">
+                    <FollowButton target_user_id={profile.sub} />
+                </div>
             </div>
         </Card>
   )
