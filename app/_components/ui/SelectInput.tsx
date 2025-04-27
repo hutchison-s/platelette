@@ -6,11 +6,11 @@ type SelectEntry = {label: string, value: string | number}
 
 
 
-export default function SelectInput({label, name, options, className='', ...rest}: {label: string, name: string, options: SelectEntry[], className?: string, rest?: SelectHTMLAttributes<HTMLSelectElement>}) {
+export default function SelectInput({label, name, options, required, className='', ...rest}: {label: string, name: string, options: SelectEntry[], required?: boolean, className?: string, rest?: SelectHTMLAttributes<HTMLSelectElement>}) {
     const [selected, setSelected] = useState<string | undefined>();
     return (
         <div className={"relative h-full"+className}>
-          <select name={name} id={name} required className="peer truncate border-1 border-slate-500 rounded py-1 pt-6 px-3 w-full text-slate-700" {...rest.rest} value={selected} onChange={(e)=>setSelected(e.target.value)}>
+          <select name={name} id={name} required={required} className="peer truncate border-1 border-slate-500 rounded py-1 pt-6 px-3 w-full text-slate-700" {...rest.rest} value={selected} onChange={(e)=>setSelected(e.target.value)}>
             <option value={undefined} className="text-primary" > </option>
             {options.map((opt, i)=><option key={i} value={opt.value} className="text-slate-500">{opt.label}</option>)}
           </select>

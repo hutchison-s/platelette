@@ -1,16 +1,16 @@
 'use client'
 
-import React, { FormEventHandler, useRef, useState } from 'react'
+import React, { FormEventHandler, useEffect, useRef, useState } from 'react'
 import { Recipe } from '../../types'
 import { TextInput } from '../../_components/ui/Inputs';
 import { useAuth } from '../../_hooks/useAuth';
 import { ButtonStyles } from '../../_components/ui/Buttons';
 import Card from '../../_components/cards/Card';
-import { Loader, Share2, Split } from 'lucide-react';
+import { Loader, Split } from 'lucide-react';
 import { useApiController } from '../../_hooks/useApiController';
 import { v4 as uuidv4 } from 'uuid';
 import { getS3UploadUrl, titleToSlug } from '../../_utils/helpers';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 function GenerateSkeleton() {
     return (
@@ -70,7 +70,7 @@ function GenerateRecipe({r, photo, modify, save}: {r: Partial<Recipe>, photo?: s
                         </ul>
                     </div>
                     <div className="w-full px-2 py-4 gap-2">
-                        <button onClick={save} className={ButtonStyles.primary+' mx-auto flex gap-2 justify-center mb-8'}><Share2 /> Share Your Creation!</button>
+                        <button onClick={save} className={ButtonStyles.primary+' mx-auto flex gap-2 justify-center mb-8'}>Save Your Creation!</button>
                         <form onSubmit={modify}>
                             <p className='font-bold text-2xl mb-2'>Modify recipe:</p>
                             <div className="flex gap-2 w-full">
@@ -93,16 +93,22 @@ function AICreate() {
     const {Recipes} = useApiController();
     const router = useRouter();
     const saveRef = useRef<HTMLDialogElement>(null);
+    const formRef = useRef<HTMLFormElement>(null);
+    const searchParams = useSearchParams();
+    
+    useEffect(()=>{
+        const titleParam = searchParams.get('title');
+        if (titleParam) {
+            const title = decodeURIComponent(titleParam);
+            formRef.current?.reset();
+            formRef.current?.prompt?.setAttribute('value', title);
+            formRef.current?.prompt?.focus();
+            formRef.current?.requestSubmit();
+            window.history.replaceState({}, '', '/create');
+        }
+    }, [searchParams])
 
-    const handleSubmit: FormEventHandler<HTMLFormElement> = async (e)=>{
-        e.preventDefault();
-        setIsLoading(true);
-        setGenerated({})
-        URL.revokeObjectURL(photo);
-        setPhoto('')
-        const target = e.currentTarget as HTMLFormElement;
-        const prompt = target.prompt?.value;
-        if (!prompt) return;
+    const generateRecipe = async (prompt: string) => {
         const text = fetch('https://api.platelette.com/ai', {method: 'POST', headers: {'Authorization': `Bearer ${access}`, 'Content-Type': 'application/json', 'Accept': 'application/json'}, body: JSON.stringify({prompt})})
             .then(res => res.json())
             .then(json => {
@@ -128,6 +134,18 @@ function AICreate() {
             return;
         }
         setIsLoading(false);
+    }
+
+    const handleSubmit: FormEventHandler<HTMLFormElement> = async (e)=>{
+        e.preventDefault();
+        setIsLoading(true);
+        setGenerated({})
+        URL.revokeObjectURL(photo);
+        setPhoto('')
+        const target = e.currentTarget as HTMLFormElement;
+        const prompt = target.prompt?.value;
+        if (!prompt) return;
+        await generateRecipe(prompt);
         target.reset();
     }
 
@@ -193,7 +211,7 @@ function AICreate() {
             </div>
         </dialog>
         <div className={`${!generated.title && !isLoading ? 'h-[20vh]' : 'h-0'}`}></div>
-        <form onSubmit={handleSubmit} className='w-full flex justify-center flex-col gap-2 items-center md:flex-row my-4 mx-auto '>
+        <form onSubmit={handleSubmit} ref={formRef} className='w-full flex justify-center flex-col gap-2 items-center md:flex-row my-4 mx-auto '>
             <TextInput label='I want a recipe for...' name='prompt' className='w-full max-w-600'/>
             <button className={ButtonStyles.primary+' block'}>Generate</button>
         </form>

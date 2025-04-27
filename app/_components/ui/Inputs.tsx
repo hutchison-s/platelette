@@ -64,7 +64,7 @@ export function IngredientInput({index, className=''}: {index: number, className
     return (
         <div className={"flex gap-2 items-center "+className}>
             <TextInput label="Qty" name={`qty-${index}`} className="w-24" rest={{required: true, title: 'Enter a valid number (e.g. 1.5, 3/4, 12)'}}/>
-            <SelectInput label="Measure" name={`measure-${index}`} options={units} className="h-full" rest={{title: 'Select a measurement unit or "Piece" for counting the whole ingredient'}} />
+            <SelectInput label="Measure" name={`measure-${index}`} options={units} required className="h-full" rest={{title: 'Select a measurement unit or "Piece" for counting the whole ingredient'}} />
             <TextInput label="Ingredient Name" name={`ingredient_name-${index}`} className="grow"/>
         </div>
     )
