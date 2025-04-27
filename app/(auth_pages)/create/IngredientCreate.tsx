@@ -82,7 +82,7 @@ function IngredientCreate() {
                     }}
                 />
                 <p className="font-heading text-xl mt-2 border-b-2 border-b-primary w-full max-w-600 mx-auto">Choose a type of recipe:</p>
-                <div className="flex gap-2 py-2">
+                <div className="flex gap-2 py-2 flex-wrap justify-center w-full max-w-[600px] mx-auto">
                     
                         <label htmlFor="appetizer" className="cursor-pointer has-[:checked]:bg-primary has-[:checked]:text-background2 px-4 py-2 rounded-md bg-background2 text-foreground">Appetizer <input type="radio" name="recipeType" value="appetizer" id="appetizer" className="hidden" /></label>
 
