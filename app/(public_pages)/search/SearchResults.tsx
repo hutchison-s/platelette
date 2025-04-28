@@ -5,30 +5,41 @@ import { Loader } from "lucide-react";
 import Card from "@/app/_components/cards/Card";
 import RecipePreviewCard from "@/app/_components/cards/RecipePreviewCard";
 import { LinkButton } from "@/app/_components/ui/Buttons";
-import useFetch from "@/app/_hooks/useFetch";
 import useQuery from "@/app/_hooks/useQuery";
-import { Recipe } from "@/app/types";
+import { fetchStatus, Recipe } from "@/app/types";
+import SectionHeading from "@/app/_components/ui/SectionHeading";
 
 
 function SearchResults() {
     const [query, status] = useQuery();
-    const [recipes, recipeStatus] = useFetch<{items: Recipe[], count: number, cursor?: string}>('https://api.platelette.com/recipes');
-    const [filtered, setFiltered] = useState(recipes?.items || [])
+    const [results, setResults] = useState<Recipe[]>([])
+    const [resultStatus, setResultStatus] = useState<fetchStatus>('loading');
+    
 
     useEffect(()=>{
-        if (status != 'success' || !recipes) return;
-        const queryFilter = (each: Recipe)=>{
-            const fullText = [each.description, each.title, each.tags.join(','), each.author_name].join(' ');
-            const queryTest = new RegExp(query || ' ', 'gi');
-            return queryTest.test(fullText);
+        if (status != 'success' || !query) return;
+        const search = async () => {
+            const res = await fetch(`https://api.platelette.com/recipes/search?query=${query}`);
+            if (!res.ok) {
+                throw new Error('Failed to fetch search results');
+            }
+            const data = await res.json();
+            setResults(data);
+            setResultStatus('success');
         }
-        setFiltered(recipes.items.filter(queryFilter));
-    }, [status, query, recipes])
-    
-    switch(true) {
-        case status == 'success' && recipeStatus == 'success' && recipes && filtered.length > 0:
-            return <section className="grid gap-4 max-w-600 mx-auto md:max-w-[98%] md:grid-cols-2 xl:grid-cols-3">{filtered.map(r => <RecipePreviewCard recipe={{...r}} key={r.id}/>)}</section>;
-        case status == 'success' && recipeStatus == 'success' && recipes && filtered.length == 0:
+        search().catch(err => {
+            console.error(err);
+            setResults([]);
+            setResultStatus('error');
+        })
+            
+    }, [status, query])
+
+    function Switcher() {
+        switch(true) {
+        case status == 'success' && resultStatus == 'success' && results.length > 0:
+            return <section className="grid gap-4 max-w-600 mx-auto md:max-w-[98%] md:grid-cols-2 xl:grid-cols-3">{results.map(r => <RecipePreviewCard recipe={{...r}} key={r.id} viewportAnimate={false}/>)}</section>;
+        case status == 'success' && resultStatus == 'success' && results.length == 0:
             return <Card className="text-center"><p className="text-center my-8 text-2xl font-light">No results found</p><LinkButton href="/" className="mx-auto">Home</LinkButton></Card>
         case status == 'error':
             return <Card>
@@ -40,6 +51,17 @@ function SearchResults() {
                 <Loader className="text-primary animate-spin mx-auto my-8" size={80} />
             </Card>
     }
+    
+    
+    }
+
+    return (
+        <>
+            <SectionHeading>Search Results {status == 'success' ? `for ${query}` : ''}:</SectionHeading>
+            <Switcher />
+        </>
+    )
+    
 }
 
 export default SearchResults;
