@@ -6,7 +6,7 @@ import InputList from "./InputList";
 import PhotoInputWithPreview from "../../_components/ui/PhotoInput";
 import { Button } from "../../_components/ui/Buttons";
 import { getS3UploadUrl, titleToSlug } from "../../_utils/helpers";
-import { MeasurementUnit, Recipe } from "../../types";
+import { Recipe } from "../../types";
 import { v4 as uuidV4 } from "uuid";
 import { useAuth } from "../../_hooks/useAuth";
 import { useRouter } from "next/navigation";
@@ -69,7 +69,7 @@ function RecipeForm() {
             newRecipe.ingredients![idx] = {...newRecipe.ingredients![idx], qty: parseInt(thisKey) }
           }
           if (k.startsWith('measure')) {
-            newRecipe.ingredients![idx] = {...newRecipe.ingredients![idx], measure: thisKey as MeasurementUnit }
+            newRecipe.ingredients![idx] = {...newRecipe.ingredients![idx], measure: thisKey }
           }
           if (k.startsWith('ingredient_name')) {
             newRecipe.ingredients![idx] = {...newRecipe.ingredients![idx], name: thisKey }

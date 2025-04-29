@@ -1,31 +1,4 @@
 import { InputHTMLAttributes, TextareaHTMLAttributes } from "react"
-import SelectInput from "./SelectInput";
-
-const units = [
-    { label: 'Teaspoon', value: 'tsp' },
-    { label: 'Tablespoon', value: 'tbsp' },
-    { label: 'Fluid Ounce', value: 'fl_oz' },
-    { label: 'Cup', value: 'cup' },
-    { label: 'Pint', value: 'pt' },
-    { label: 'Quart', value: 'qt' },
-    { label: 'Gallon', value: 'gal' },
-    { label: 'Milliliter', value: 'ml' },
-    { label: 'Liter', value: 'l' },
-    
-    { label: 'Ounce', value: 'oz' },
-    { label: 'Pound', value: 'lb' },
-    { label: 'Gram', value: 'g' },
-    { label: 'Kilogram', value: 'kg' },
-  
-    { label: 'Piece', value: 'piece' },
-    { label: 'N/A', value: 'piece' },
-    { label: 'Head', value: 'head' },
-    { label: 'Slice', value: 'slice' },
-    { label: 'Clove', value: 'clove' },
-    { label: 'Stick', value: 'stick' },
-    { label: 'Pinch', value: 'pinch' },
-    { label: 'Dash', value: 'dash' }
-  ];
   
 
 export function TextInput({label, name, className='', defaultValue, ...rest}: {label: string, name: string, className?: string, defaultValue?: string, rest?: InputHTMLAttributes<HTMLInputElement>}) {
@@ -63,8 +36,9 @@ export function TextAreaInput({label, name, className='', defaultValue, textArea
 export function IngredientInput({index, className='', defaultValue}: {index: number, className?: string, defaultValue?: {qty: number, measure: string, name: string}}) {
     return (
         <div className={"flex gap-2 items-center "+className}>
-            <TextInput label="Qty" name={`qty-${index}`} defaultValue={String(defaultValue?.qty) || ''} className="w-24" rest={{required: true, title: 'Enter a valid number (e.g. 1.5, 3/4, 12)'}}/>
-            <SelectInput label="Measure" defaultValue={defaultValue?.measure || undefined} name={`measure-${index}`} options={units} required className="h-full" rest={{title: 'Select a measurement unit or "Piece" for counting the whole ingredient'}} />
+            <MeasuresList />
+            <TextInput label="Qty" name={`qty-${index}`} defaultValue={defaultValue ? String(defaultValue.qty) : ''} className="w-24" rest={{required: true, title: 'Enter a valid number (e.g. 1.5, 3/4, 12)'}}/>
+            <TextInput label="Measure" defaultValue={defaultValue?.measure || undefined} name={`measure-${index}`} className="" rest={{list: "unit-options", title: 'Provide a measurement unit such as "Tbsp," "Clove," or leave blank for counting the whole ingredient'}} />
             <TextInput label="Ingredient Name" name={`ingredient_name-${index}`} defaultValue={defaultValue?.name || ''} className="grow"/>
         </div>
     )
@@ -76,3 +50,104 @@ export function InstructionInput({index, className='', defaultValue}: {index: nu
     )
 }
 
+
+function MeasuresList() {
+    return (
+        <datalist id="unit-options">
+  <option value="teaspoon"/>
+  <option value="teaspoons"/>
+  <option value="tsp"/>
+
+  <option value="tablespoon"/>
+  <option value="tablespoons"/>
+  <option value="tbsp"/>
+
+  <option value="fluid oz"/>
+  <option value="fluid ounce"/>
+  <option value="fluid ounces"/>
+  <option value="fl oz"/>
+
+  <option value="cup"/>
+  <option value="cups"/>
+
+  <option value="pint"/>
+  <option value="pints"/>
+  <option value="pt"/>
+
+  <option value="quart"/>
+  <option value="quarts"/>
+  <option value="qt"/>
+
+  <option value="gallon"/>
+  <option value="gallons"/>
+  <option value="gal"/>
+
+  <option value="ml"/>
+  <option value="milliliter"/>
+  <option value="milliliters"/>
+
+  <option value="liter"/>
+  <option value="liters"/>
+  <option value="l"/>
+
+  <option value="oz"/>
+  <option value="ounce"/>
+  <option value="ounces"/>
+
+  <option value="lb"/>
+  <option value="pound"/>
+  <option value="pounds"/>
+
+  <option value="gram"/>
+  <option value="grams"/>
+  <option value="g"/>
+
+  <option value="kilogram"/>
+  <option value="kilograms"/>
+  <option value="kg"/>
+
+  <option value="piece"/>
+  <option value="pieces"/>
+
+  <option value="handful"/>
+  <option value="handfuls"/>
+
+  <option value="head"/>
+  <option value="heads"/>
+
+  <option value="slice"/>
+  <option value="slices"/>
+
+  <option value="clove"/>
+  <option value="cloves"/>
+
+  <option value="stick"/>
+  <option value="sticks"/>
+
+  <option value="pinch"/>
+  <option value="pinches"/>
+
+  <option value="dash"/>
+  <option value="dashes"/>
+
+  <option value="can"/>
+  <option value="cans"/>
+
+  <option value="jar"/>
+  <option value="jars"/>
+
+  <option value="package"/>
+  <option value="packages"/>
+
+  <option value="bunch"/>
+  <option value="bunches"/>
+
+  <option value="bag"/>
+  <option value="bags"/>
+
+  <option value="container"/>
+  <option value="containers"/>
+</datalist>
+
+    )
+}

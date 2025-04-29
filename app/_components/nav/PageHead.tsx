@@ -15,7 +15,7 @@ function PageHead() {
             <div className="relative z-0 max-w-[1200px]  py-2 px-xtra flex gap-2 items-center justify-between w-full mx-auto">
               <div className="flex gap-2 items-center">
             
-                <Link href={'/'} className="flex gap-2 items-center">
+                <Link href={'/'} scroll={false} className="flex gap-2 items-center">
                   <h1 className="font-display text-3xl text-white hidden sm:inline-block">Platelette</h1>
                   <Image src={logo} alt='Logo' width={45} height={45}/>
                 </Link>

@@ -31,40 +31,12 @@ export interface RecipePreview {
 export interface Recipe extends RecipePreview {
     ingredients: Ingredient[],
     instructions: string[],
-    yield?: number,
-    
+    yield?: number
   };
-
-  export enum MeasurementUnit {
-    // Volume
-    Teaspoon = "tsp",
-    Tablespoon = "tbsp",
-    FluidOunce = "fl_oz",
-    Cup = "cup",
-    Pint = "pt",
-    Quart = "qt",
-    Gallon = "gal",
-    Milliliter = "ml",
-    Liter = "l",
-  
-    // Weight
-    Ounce = "oz",
-    Pound = "lb",
-    Gram = "g",
-    Kilogram = "kg",
-  
-    // Count-Based
-    Piece = "piece",
-    Slice = "slice",
-    Clove = "clove",
-    Stick = "stick",
-    Pinch = "pinch",
-    Dash = "dash"
-  }  
 
 export type Ingredient = {
   qty: number,
-  measure: MeasurementUnit,
+  measure: string,
   name: string
 }
 

@@ -1,6 +1,6 @@
 import RecipePage from './RecipePage';
 import { notFound } from 'next/navigation';
-import { MeasurementUnit, Recipe } from '@/app/types';
+import { Recipe } from '@/app/types';
 
 import { Metadata } from 'next';
 
@@ -38,7 +38,7 @@ export default async function Page({params}: {params: Promise<{slug: string}>}) 
     if (!r) return notFound();
     return (
         <>
-            <RecipePage recipe={{...r, ingredients: [...r.ingredients.map(ing => {return {...ing, measure: ing.measure as MeasurementUnit}})]}} />
+            <RecipePage recipe={{...r, ingredients: [...r.ingredients.map(ing => {return {...ing, measure: ing.measure}})]}} />
         </>
     )
 }

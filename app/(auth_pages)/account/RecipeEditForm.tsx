@@ -5,7 +5,7 @@ import { IngredientInput, InstructionInput, NumberInput, TextAreaInput, TextInpu
 import PhotoInputWithPreview from "../../_components/ui/PhotoInput";
 import { Button } from "../../_components/ui/Buttons";
 import { getS3UploadUrl, titleToSlug } from "../../_utils/helpers";
-import { MeasurementUnit, Recipe } from "../../types";
+import { Recipe } from "../../types";
 import { useAuth } from "../../_hooks/useAuth";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader } from "lucide-react";
@@ -120,7 +120,7 @@ function RecipeEditForm() {
             updatedRecipe.ingredients![idx] = {...updatedRecipe.ingredients![idx], qty: parseInt(thisKey) }
           }
           if (k.startsWith('measure')) {
-            updatedRecipe.ingredients![idx] = {...updatedRecipe.ingredients![idx], measure: thisKey as MeasurementUnit }
+            updatedRecipe.ingredients![idx] = {...updatedRecipe.ingredients![idx], measure: thisKey }
           }
           if (k.startsWith('ingredient_name')) {
             updatedRecipe.ingredients![idx] = {...updatedRecipe.ingredients![idx], name: thisKey }
