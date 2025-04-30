@@ -4,12 +4,16 @@ import React from 'react'
 function TagLinks({tags}: {tags: string[]}) {
     return (
         <div className="text-primary2 text-sm font-light font-body flex gap-2">
-            {tags?.map((tag, idx) => {
+            {tags?.slice(0,4).map((tag, idx) => {
                 return (
-                    <span key={idx}>
-                        {idx !== 0 && '  |  '}
+                    <div key={idx} className='flex gap-2 items-center'>
+                    {idx !== 0 && <span>{'  |  '}</span>}
+                    <span className='hover:underline transition-all duration-200'>
+                        
                         <Link href={`/search?query=${tag}`}>{tag}</Link>
                     </span>
+                    </div>
+                    
                     
                 )
             })}

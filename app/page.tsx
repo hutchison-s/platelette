@@ -7,19 +7,22 @@ import TopRecipes from "./_components/TopRecipes";
 import PageWrapper from "./_components/ui/PageWrapper";
 import { Suspense } from "react";
 import HeroLoading from "./_components/ui/HeroLoading";
+import ScrollTop from "./_components/tools/ScrollTop";
 
 export default function Home() {
   return (
     <>
+        
         <Suspense fallback={<HeroLoading />}>
           <Hero />
+          <ScrollTop />
         </Suspense>
         
         <PageWrapper>
           <SectionHeading>Popular Recipes</SectionHeading>
-          <TopRecipes limit={5} />
+          <TopRecipes limit={6} />
           <SectionHeading>Latest Recipes</SectionHeading>
-          <LatestRecipes limit={5} />
+          <LatestRecipes limit={6} />
           
           <Card className="grid place-items-center mt-4">
             <FeaturedText>More to Come!</FeaturedText>

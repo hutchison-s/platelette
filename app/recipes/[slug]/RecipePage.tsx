@@ -43,7 +43,7 @@ export default function RecipePage({recipe}: {recipe: Recipe}) {
                     <div>
                         <p className='font-body font-bold text-secondary text-2xl mb-4'>Ingredients</p>
                         <ul className='list-disc leading-loose ml-4 px-4'>
-                            {recipe.ingredients?.map((ing, idx) => <li key={idx} className='py-1'>{ing.qty} {ing.measure}{ing.qty > 1 && !ing.measure.endsWith('s') ? 's' : ''} {ing.name}</li>)}
+                            {recipe.ingredients?.map((ing, idx) => <li key={idx} className='py-1'>{ing.qty} {ing.measure} {ing.name}</li>)}
                         </ul>
                     </div>
 

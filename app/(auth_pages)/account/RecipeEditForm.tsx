@@ -35,43 +35,6 @@ function RecipeEditForm() {
       })
   }, [searchParams, Recipes])
 
-    useEffect(() => {
-    if (recipe && formRef.current) {
-      const form = formRef.current;
-      console.log('recipe', recipe, 'form', form)
-        if (form) {
-            (form.querySelector('input[name="title"]') as HTMLInputElement).value = recipe.title || '';
-            form.description.value = recipe.description || '';
-            form.tags.value = recipe.tags?.join(', ') || '';
-            form.yield.value = recipe.yield?.toString() || '';
-            if (recipe.photo) {
-                const photoInput = document.getElementById('photo') as HTMLInputElement;
-                photoInput.dataset.previewSrc = recipe.photo;
-            }
-            if (recipe.ingredients) {
-                const ingredientInputs = form.querySelectorAll('.ingredient-input');
-                recipe.ingredients.forEach((ing, idx) => {
-                if (ingredientInputs[idx]) {
-                    (ingredientInputs[idx] as HTMLInputElement).value = ing.name || '';
-                    const qtyInput = form.querySelector(`input[name="qty-${idx}"]`) as HTMLInputElement;
-                    const measureInput = form.querySelector(`select[name="measure-${idx}"]`) as HTMLSelectElement;
-                    if (qtyInput) qtyInput.value = ing.qty?.toString() || '';
-                    if (measureInput) measureInput.value = ing.measure || '';
-                }
-                });
-            }
-            if (recipe.instructions) {
-                const instructionInputs = form.querySelectorAll('.instruction-input');
-                recipe.instructions.forEach((step, idx) => {
-                if (instructionInputs[idx]) {
-                    (instructionInputs[idx] as HTMLInputElement).value = step || '';
-                }
-                });
-            }
-            }
-    }
-  }, [recipe])
-
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         setIsSubmiting(true);
         e.preventDefault();
@@ -144,10 +107,10 @@ function RecipeEditForm() {
 
         <>
           <p className="font-heading text-xl mt-2 border-b-2 border-b-primary w-full max-w-600 mx-auto">General Info</p>
-          <TextInput label="Recipe Title" name="title" className="w-full mx-auto max-w-600" />
-          <TextAreaInput label="Description" name="description" className="w-full mx-auto max-w-600" textAreaClassName="resize-none" rest={{rows: 5}}/>
+          <TextInput label="Recipe Title" name="title" className="w-full mx-auto max-w-600"  defaultValue={recipe?.title}/>
+          <TextAreaInput label="Description" name="description" className="w-full mx-auto max-w-600" textAreaClassName="resize-none" rest={{rows: 5}} defaultValue={recipe?.description}/>
           <PhotoInputWithPreview name="photo" className="w-full mx-auto max-w-600" initial={recipe.photo}/>
-          <TextInput label="Tags (separated by commas )" name="tags" className="w-full mx-auto max-w-600" />
+          <TextInput label="Tags (separated by commas )" name="tags" className="w-full mx-auto max-w-600" defaultValue={recipe?.tags.join(', ')}/>
 
           <p className="font-heading text-xl mt-2 border-b-2 border-b-primary w-full max-w-600 mx-auto">Ingredients</p>
           <InputList label="Ingredient" Component={IngredientInput} className="w-full mx-auto max-w-600" initial={recipe?.ingredients.map((ing, idx) => <IngredientInput key={idx} index={idx} defaultValue={ing}/>)}/>
@@ -155,7 +118,7 @@ function RecipeEditForm() {
           <p className="font-heading text-xl mt-2 border-b-2 border-b-primary w-full max-w-600 mx-auto">Instructions</p>
           <InputList label="Step" Component={InstructionInput} className="w-full mx-auto max-w-600"  initial={recipe?.instructions.map((step, idx)=><InstructionInput key={idx} index={idx} defaultValue={step} />)}/>
 
-          <NumberInput label="Yield" name="yield" className="w-fit mx-auto"/>
+          <NumberInput label="Yield" name="yield" className="w-fit mx-auto" defaultValue={recipe?.yield}/>
 
           <Button className="block mx-auto my-4 mt-8">Update Recipe</Button>
         </>
